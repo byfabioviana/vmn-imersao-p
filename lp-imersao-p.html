@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Imersão P — Gisele Machado | Posicionamento Único de Valor</title>
+<meta name="description" content="Construa ao vivo seu Posicionamento Único de Valor (PUV) com Gisele Machado. 22+ anos de experiência condensados em 3h de imersão prática. 30 de março, 19h.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Imersão P — Pare de perder espaço para quem sabe menos que você">
+<meta property="og:description" content="Workshop ao vivo de 3h com Gisele Machado. Construa seu PUV e transforme expertise em autoridade percebida. A partir de R$97.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://imersao-p.fabioviana.app.br">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
   /* Google Fonts via @import (compatível com RD Station) */
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap');
@@ -11,7 +19,7 @@
   /* ═══════════════════════════════════════
      RESET & BASE
      Spacing scale: 8 · 16 · 24 · 32 · 48 · 64 · 96
-     Opacity tiers: 1.0 · 0.7 · 0.4
+     Opacity tiers: 1.0 · 0.82 · 0.7 · 0.4
      ═══════════════════════════════════════ */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -24,7 +32,7 @@
     line-height: 1.6;
   }
 
-  /* Noise texture overlay — percepção premium */
+  /* Noise texture overlay */
   body::after {
     content: '';
     position: fixed;
@@ -49,49 +57,46 @@
     0%, 100% { box-shadow: 0 0 30px rgba(171,147,24,0.15); }
     50% { box-shadow: 0 0 50px rgba(171,147,24,0.3); }
   }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.6); }
+  }
+  @keyframes cta-shine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+
+  /* ─── FOCUS STATES (accessibility) ─── */
+  a:focus-visible, button:focus-visible, label:focus-visible, input:focus-visible {
+    outline: 2px solid #c9ae2a;
+    outline-offset: 3px;
+  }
 
   /* ─── URGENCY BANNER ─── */
   .urgency-banner {
     background: linear-gradient(90deg, #8a7510, #ab9318, #c9ae2a, #ab9318, #8a7510);
     color: #0a0a0a;
     text-align: center;
-    padding: 12px 16px;
-    font-size: 0.78rem;
+    padding: 14px 16px;
+    font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
   }
   .urgency-banner .banner-sep { opacity: 0.4; margin: 0 8px; }
-  .countdown-row {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .countdown-box {
-    background: #0a0a0a;
-    color: #c9ae2a;
-    font-family: 'Barlow Condensed', Arial, sans-serif;
-    font-size: 1.1rem;
-    font-weight: 900;
-    padding: 6px 10px;
-    min-width: 44px;
-    text-align: center;
-    letter-spacing: 1px;
-  }
-  .countdown-box small {
+  .banner-date {
     display: block;
-    font-size: 0.55rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: rgba(201,174,42,0.6);
-    text-transform: uppercase;
+    margin-top: 6px;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
   }
 
-  /* ─── HERO (com vídeo integrado) ─── */
+  /* ─── HERO ─── */
   .hero {
     background: #0a0a0a;
-    min-height: 90vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -128,6 +133,7 @@
     background: #ab9318;
     border-radius: 50%;
     display: inline-block;
+    animation: live-pulse 2s ease-in-out infinite;
   }
 
   .hero-headline {
@@ -142,7 +148,6 @@
     position: relative;
     z-index: 1;
   }
-  /* Shimmer metálico no destaque dourado */
   .hero-headline em {
     font-style: italic;
     display: block;
@@ -159,80 +164,14 @@
     line-height: 1.75;
     text-align: center;
     max-width: 680px;
-    color: rgba(248,245,239,0.7);
+    color: rgba(248,245,239,0.82);
     margin: 24px auto 0;
-    font-weight: 300;
+    font-weight: 400;
     position: relative;
     z-index: 1;
   }
 
-  /* Vídeo integrado ao hero */
-  .hero-video {
-    width: 100%;
-    max-width: 720px;
-    margin-top: 48px;
-    position: relative;
-    z-index: 1;
-  }
-  .video-wrapper {
-    position: relative;
-    width: 100%;
-    background: #111;
-    border: 2px solid rgba(171,147,24,0.3);
-    box-shadow: 0 0 60px rgba(171,147,24,0.12), 0 30px 60px rgba(0,0,0,0.6);
-    overflow: hidden;
-    animation: float-glow 4s ease-in-out infinite;
-  }
-  .video-placeholder {
-    width: 100%;
-    padding-top: 56.25%;
-    position: relative;
-    background: linear-gradient(135deg, #0d0d0d 0%, #151510 100%);
-    cursor: pointer;
-  }
-  .video-placeholder-inner {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-  }
-  .play-btn {
-    width: 72px; height: 72px;
-    border-radius: 50%;
-    background: #ab9318;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
-  }
-  .play-btn:hover { transform: scale(1.1); }
-  .play-btn svg { width: 24px; height: 24px; fill: #0a0a0a; margin-left: 3px; }
-  .video-label {
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    color: #ab9318;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .video-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 16px;
-    padding: 8px 16px;
-    border: 1px solid rgba(171,147,24,0.3);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #ab9318;
-    background: rgba(171,147,24,0.06);
-  }
-
-  /* ─── CTA BUTTONS (3 variantes) ─── */
+  /* ─── CTA BUTTONS (4 variantes) ─── */
   .cta-btn {
     display: inline-block;
     background: #ab9318;
@@ -250,6 +189,20 @@
     position: relative;
     overflow: hidden;
   }
+  /* CTA shine effect on hover */
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: none;
+  }
+  .cta-btn:hover::before {
+    animation: cta-shine 0.6s ease-out forwards;
+  }
   .cta-btn:hover {
     background: #c9ae2a;
     border-color: #c9ae2a;
@@ -257,7 +210,7 @@
     box-shadow: 0 12px 40px rgba(171,147,24,0.4);
   }
 
-  /* Variante: outline pulsante (pós-dor) */
+  /* Variante: outline pulsante */
   .cta-btn.pulse {
     background: transparent;
     color: #c9ae2a;
@@ -270,7 +223,7 @@
     animation: none;
   }
 
-  /* Variante: invertido (fundo dourado) */
+  /* Variante: invertido */
   .cta-btn.inverted {
     background: #0a0a0a;
     color: #ab9318;
@@ -326,8 +279,14 @@
     font-weight: 600;
     color: #ab9318;
     letter-spacing: 1px;
+    transition: transform 0.2s, color 0.2s;
   }
-  .proof-item svg { width: 18px; height: 18px; fill: #ab9318; }
+  .proof-item:hover {
+    transform: translateY(-2px);
+    color: #c9ae2a;
+  }
+  .proof-item svg { width: 18px; height: 18px; fill: #ab9318; transition: fill 0.2s; }
+  .proof-item:hover svg { fill: #c9ae2a; }
 
   /* ─── SECTION WRAPPER ─── */
   section { padding: 96px 24px; }
@@ -359,14 +318,16 @@
     margin-bottom: 24px;
   }
 
-  /* Separador decorativo dourado entre seções */
+  /* Separador decorativo dourado */
   .gold-divider {
     display: block;
     width: 60px;
     height: 1px;
     margin: 0 auto;
     background: linear-gradient(90deg, transparent, #ab9318, transparent);
+    transition: width 0.4s;
   }
+  .gold-divider:hover { width: 120px; }
 
   /* ─── PAIN SECTION ─── */
   .pain-section { background: #f8f5ef; color: #0a0a0a; }
@@ -398,6 +359,11 @@
     color: #f8f5ef;
     padding: 32px 24px;
     border-top: 3px solid #ab9318;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .pain-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
   }
   .pain-icon { font-size: 2rem; margin-bottom: 16px; }
   .pain-title {
@@ -435,7 +401,7 @@
   }
   .pain-section .cta-center .cta-note { color: rgba(0,0,0,0.4); }
 
-  /* ─── PARA QUEM (antes de depoimentos) ─── */
+  /* ─── PARA QUEM ─── */
   .for-whom-section {
     background: linear-gradient(180deg, #0a0a0a 0%, #0d0b05 50%, #0a0a0a 100%);
   }
@@ -450,11 +416,12 @@
   .profile-card {
     border: 1px solid rgba(171,147,24,0.2);
     padding: 32px 24px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
   }
   .profile-card:hover {
     border-color: #ab9318;
     box-shadow: 0 0 24px rgba(171,147,24,0.08);
+    transform: translateY(-4px);
   }
   .profile-icon { font-size: 2.5rem; margin-bottom: 16px; }
   .profile-title {
@@ -467,6 +434,13 @@
     letter-spacing: 1px;
   }
   .profile-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(248,245,239,0.7); }
+
+  /* Border separator between profile cards on mobile */
+  @media(max-width: 699px) {
+    .profile-card + .profile-card {
+      border-top: 1px solid rgba(171,147,24,0.15);
+    }
+  }
 
   /* ─── TESTIMONIALS ─── */
   .testimonials-section { background: #f8f5ef; color: #0a0a0a; }
@@ -486,6 +460,11 @@
     color: #f8f5ef;
     padding: 32px 24px;
     border-bottom: 3px solid #ab9318;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
   }
   .result-badge {
     display: inline-block;
@@ -533,6 +512,11 @@
     padding: 32px 24px;
     position: relative;
     overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
   }
   .pillar-card::before {
     content: attr(data-num);
@@ -626,10 +610,18 @@
     text-transform: uppercase;
     font-weight: 700;
     padding: 8px 16px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .tag:hover {
+    background: #ab9318;
+    color: #0a0a0a;
   }
 
-  /* ─── PRICING MEGA-SECTION (ancoragem + cards + garantia) ─── */
-  .pricing-section { background: #ab9318; color: #0a0a0a; }
+  /* ─── PRICING MEGA-SECTION ─── */
+  .pricing-section {
+    background: linear-gradient(180deg, #ab9318 0%, #9a8416 50%, #ab9318 100%);
+    color: #0a0a0a;
+  }
   .pricing-section .section-label { color: #0a0a0a; opacity: 0.7; }
   .pricing-section .section-label::after { background: #0a0a0a; opacity: 0.4; }
   .pricing-section .section-title { color: #0a0a0a; }
@@ -695,8 +687,21 @@
     padding: 32px 24px;
     position: relative;
     border-top: 4px solid transparent;
+    transition: transform 0.3s, box-shadow 0.3s;
   }
-  .pricing-card.featured { border-top-color: #c9ae2a; }
+  .pricing-card.featured {
+    border-top-color: #c9ae2a;
+    transform: scale(1.03);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .pricing-card.featured:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 56px rgba(0,0,0,0.5);
+  }
+  .pricing-card:not(.featured):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+  }
   .pricing-card.featured::before {
     content: '\2726 RECOMENDADO';
     position: absolute;
@@ -753,9 +758,18 @@
     text-decoration: none;
     transition: all 0.25s;
     border: 2px solid #ab9318;
+    position: relative;
+    overflow: hidden;
   }
   .pricing-card:not(.featured) .price-cta { background: transparent; color: #ab9318; }
   .price-cta:hover { background: #c9ae2a; color: #0a0a0a; border-color: #c9ae2a; }
+  /* Featured card CTA pulse */
+  .pricing-card.featured .price-cta {
+    animation: pulse-border 2.5s ease-in-out infinite;
+  }
+  .pricing-card.featured .price-cta:hover {
+    animation: none;
+  }
   .price-urgency {
     display: block;
     text-align: center;
@@ -783,7 +797,7 @@
   }
   .hotseat-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(0,0,0,0.7); }
 
-  /* Garantia integrada ao pricing */
+  /* Garantia */
   .guarantee-box {
     max-width: 700px;
     margin: 48px auto 0;
@@ -791,6 +805,11 @@
     border: 2px solid rgba(171,147,24,0.5);
     padding: 32px;
     text-align: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .guarantee-box:hover {
+    border-color: #c9ae2a;
+    box-shadow: 0 0 32px rgba(171,147,24,0.15);
   }
   .guarantee-icon { font-size: 2.5rem; margin-bottom: 8px; }
   .guarantee-title {
@@ -862,10 +881,10 @@
     padding-bottom: 24px;
   }
 
-  .faq-item input[type="checkbox"]:checked ~ .faq-a { max-height: 300px; }
+  .faq-item input[type="checkbox"]:checked ~ .faq-a { max-height: 500px; }
   .faq-item input[type="checkbox"]:checked ~ .faq-q .faq-icon-toggle { transform: rotate(45deg); }
 
-  /* ─── FINAL CTA (compacto, pré-footer) ─── */
+  /* ─── FINAL CTA ─── */
   .final-cta-section {
     background: #0a0a0a;
     text-align: center;
@@ -919,7 +938,7 @@
     line-height: 1.6;
   }
 
-  /* ─── MOBILE STICKY CTA BAR (com blur premium) ─── */
+  /* ─── MOBILE STICKY CTA BAR ─── */
   .sticky-cta-bar { display: none; }
   @media(max-width: 639px) {
     .sticky-cta-bar {
@@ -960,13 +979,15 @@
     .proof-item svg { width: 14px; height: 14px; }
     .pain-warning { flex-direction: column; gap: 12px; }
     .pricing-card { padding: 24px; }
+    .pricing-card.featured { transform: none; }
+    .pricing-card.featured:hover { transform: none; }
     .price-amount { font-size: 2.5rem; }
     .cta-btn { padding: 18px 32px; font-size: 1rem; }
     .cta-btn.dramatic { padding: 20px 40px; font-size: 1.1rem; }
     .cta-block { padding: 32px 16px; }
     .value-table th, .value-table td { padding: 12px 16px; font-size: 0.85rem; }
     .guarantee-box { padding: 24px 16px; }
-    .countdown-box { font-size: 0.95rem; padding: 5px 8px; min-width: 38px; }
+    .banner-date { font-size: 1.1rem; }
     .final-cta-section { padding: 48px 16px; }
     .mentor-stats { gap: 24px; }
     .stat-num { font-size: 2rem; }
@@ -977,29 +998,18 @@
     .section-title { font-size: 1.4rem; }
     .proof-bar { gap: 12px; }
     .proof-item { font-size: 0.68rem; }
-    .play-btn { width: 56px; height: 56px; }
-    .play-btn svg { width: 20px; height: 20px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════
-     1. URGENCY BANNER
-     ══════════════════════════════════════════════ -->
+<!-- 1. URGENCY BANNER -->
 <div class="urgency-banner">
   VAGAS LIMITADAS <span class="banner-sep">|</span> MÉTODO EXCLUSIVO DE POSICIONAMENTO
-  <div class="countdown-row">
-    <div class="countdown-box">00<small>Dias</small></div>
-    <div class="countdown-box">00<small>Horas</small></div>
-    <div class="countdown-box">00<small>Min</small></div>
-    <div class="countdown-box">00<small>Seg</small></div>
-  </div>
+  <span class="banner-date">30 DE MARÇO &middot; 19H &middot; AO VIVO</span>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     2. HERO (com vídeo integrado + CTA #1)
-     ══════════════════════════════════════════════ -->
+<!-- 2. HERO + CTA #1 -->
 <header class="hero">
   <div class="hero-badge">
     <span class="dot"></span> Evento ao vivo &middot; 3h de imersão
@@ -1011,36 +1021,17 @@
   <p class="hero-sub">
     Na <strong>Imersão P</strong>, você vai construir ao vivo o seu <strong>Posicionamento Único de Valor (PUV)</strong> — a mensagem que transforma sua expertise em autoridade percebida e faz o mercado pagar o que você realmente vale.
   </p>
-
-  <!-- Vídeo integrado -->
-  <div class="hero-video">
-    <div class="video-wrapper">
-      <div class="video-placeholder">
-        <div class="video-placeholder-inner">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
-          </div>
-          <span class="video-label">Assista ao convite</span>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;">
-      <span class="video-badge">&#10022; Método Exclusivo &middot; Ferramenta Proprietária</span>
-    </div>
-  </div>
 </header>
 
-<!-- CTA #1 — Após Hero/Vídeo -->
+<!-- CTA #1 -->
 <div class="cta-block">
-  <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="cta-btn">
+  <a href="#pricing" class="cta-btn">
     Garantir Minha Vaga na Imersão
   </a>
   <p class="cta-note">Pagamento seguro via Hotmart &middot; Vagas limitadas</p>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     3. SOCIAL PROOF BAR
-     ══════════════════════════════════════════════ -->
+<!-- 3. SOCIAL PROOF BAR -->
 <div class="proof-bar">
   <div class="proof-item">
     <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
@@ -1060,9 +1051,7 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     4. DOR (PAIN SECTION) + CTA #2 (outline pulsante)
-     ══════════════════════════════════════════════ -->
+<!-- 4. DOR (PAIN SECTION) + CTA #2 -->
 <section class="pain-section">
   <div class="container">
     <p class="section-label">O Diagnóstico</p>
@@ -1102,9 +1091,9 @@
       </div>
     </div>
 
-    <!-- CTA #2 — Outline pulsante (pós-dor, emocional) -->
+    <!-- CTA #2 -->
     <div class="cta-center">
-      <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="cta-btn pulse">
+      <a href="#pricing" class="cta-btn pulse">
         Quero Sair da Invisibilidade
       </a>
       <p class="cta-note" style="color:rgba(0,0,0,0.4);">Método testado por +500 profissionais</p>
@@ -1115,9 +1104,7 @@
 <!-- Separador decorativo -->
 <span class="gold-divider"></span>
 
-<!-- ══════════════════════════════════════════════
-     5. PARA QUEM (antes de depoimentos — identificação primeiro)
-     ══════════════════════════════════════════════ -->
+<!-- 5. PARA QUEM -->
 <section class="for-whom-section">
   <div class="container">
     <p class="section-label">Para Quem é Isso</p>
@@ -1147,9 +1134,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     6. DEPOIMENTOS (após "Para Quem" — validação social)
-     ══════════════════════════════════════════════ -->
+<!-- 6. DEPOIMENTOS -->
 <section class="testimonials-section">
   <div class="container">
     <p class="section-label">Depoimentos</p>
@@ -1179,9 +1164,7 @@
 <!-- Separador decorativo -->
 <span class="gold-divider"></span>
 
-<!-- ══════════════════════════════════════════════
-     7. SOLUÇÃO (4 Pilares) + CTA #3 (invertido)
-     ══════════════════════════════════════════════ -->
+<!-- 7. SOLUÇÃO (4 Pilares) + CTA #3 -->
 <section class="solution-section">
   <div class="container">
     <p class="section-label">A Solução</p>
@@ -1213,18 +1196,16 @@
       </div>
     </div>
 
-    <!-- CTA #3 — Invertido (fundo dourado) -->
+    <!-- CTA #3 -->
     <div class="cta-center">
-      <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="cta-btn inverted">
+      <a href="#pricing" class="cta-btn inverted">
         Construir Meu PUV Agora
       </a>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     8. MENTORA — 22+ anos, 6 negócios, bio completa
-     ══════════════════════════════════════════════ -->
+<!-- 8. MENTORA -->
 <section class="mentor-section">
   <div class="container">
     <p class="section-label">A Mentora</p>
@@ -1266,10 +1247,8 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     9. PRICING MEGA-SECTION (ancoragem + cards + garantia + CTA #4)
-     ══════════════════════════════════════════════ -->
-<section class="pricing-section">
+<!-- 9. PRICING MEGA-SECTION -->
+<section class="pricing-section" id="pricing">
   <div class="container">
     <p class="section-label">Investimento</p>
     <h2 class="section-title">Quanto custaria montar tudo isso por conta própria?</h2>
@@ -1349,7 +1328,7 @@
       <div class="hotseat-desc">É um momento exclusivo após a imersão onde a Gisele guia profissionais que optaram pelo VIP à "cadeira quente". Ela analisa o seu negócio especificamente, respondendo suas dúvidas e ajustando seu posicionamento ao vivo — como uma consultoria individual em grupo.</div>
     </div>
 
-    <!-- Garantia integrada -->
+    <!-- Garantia -->
     <div class="guarantee-box">
       <div class="guarantee-icon">&#128737;</div>
       <div class="guarantee-title">Garantia Hotmart de 7 Dias</div>
@@ -1358,7 +1337,7 @@
       </p>
     </div>
 
-    <!-- CTA #4 — Invertido -->
+    <!-- CTA #4 -->
     <div class="cta-center">
       <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="cta-btn inverted">
         Escolher Meu Ingresso Agora
@@ -1368,9 +1347,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     10. FAQ (6 perguntas, CSS-only accordion)
-     ══════════════════════════════════════════════ -->
+<!-- 10. FAQ -->
 <section class="faq-section">
   <div class="container">
     <p class="section-label">Dúvidas Frequentes</p>
@@ -1434,9 +1411,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     11. CTA FINAL #5 (compacto, dramático)
-     ══════════════════════════════════════════════ -->
+<!-- 11. CTA FINAL #5 -->
 <section class="final-cta-section">
   <div style="position:relative;z-index:1;">
     <p class="final-tagline">"Foque no seu CPF para faturar no seu CNPJ."</p>
@@ -1451,9 +1426,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     12. FOOTER
-     ══════════════════════════════════════════════ -->
+<!-- 12. FOOTER -->
 <footer class="site-footer">
   <div class="footer-brand">Gisele Machado</div>
   <p class="footer-copy">
@@ -1462,11 +1435,9 @@
   </p>
 </footer>
 
-<!-- ══════════════════════════════════════════════
-     MOBILE STICKY CTA BAR (com blur premium)
-     ══════════════════════════════════════════════ -->
+<!-- MOBILE STICKY CTA BAR -->
 <div class="sticky-cta-bar">
-  <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10">Garantir Minha Vaga</a>
+  <a href="#pricing">Garantir Minha Vaga</a>
 </div>
 
 </body>
