@@ -10,8 +10,8 @@ services:
       - "traefik.http.routers.lp-imersao-p.tls.certresolver=letsencrypt"
       - "traefik.http.services.lp-imersao-p.loadbalancer.server.port=80"
     networks:
-      - traefik
+      - fabiorede
 
 networks:
-  traefik:
+  fabiorede:
     external: true
