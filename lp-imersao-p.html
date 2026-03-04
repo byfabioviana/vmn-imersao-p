@@ -67,6 +67,55 @@
     0%, 100% { width: 60px; opacity: 0.6; }
     50% { width: 120px; opacity: 1; }
   }
+  @keyframes gradient-flow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes word-pop {
+    from { opacity: 0; transform: translateY(18px) rotateX(40deg); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0) rotateX(0deg); filter: blur(0); }
+  }
+  @keyframes morph-blob {
+    0% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    25% { border-radius: 60% 40% 30% 70% / 40% 60% 40% 60%; }
+    50% { border-radius: 30% 70% 50% 50% / 50% 40% 60% 50%; transform: translate(-50%, -50%) rotate(180deg) scale(1.05); }
+    75% { border-radius: 50% 50% 40% 60% / 70% 30% 70% 30%; }
+    100% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+  }
+  @keyframes parallax-drift {
+    from { transform: translateY(60px) translateX(-10px); }
+    to { transform: translateY(-60px) translateX(10px); }
+  }
+  @keyframes clip-reveal {
+    from { clip-path: inset(0 100% 0 0); opacity: 0.3; }
+    to { clip-path: inset(0 0% 0 0); opacity: 1; }
+  }
+  @keyframes scroll-ken-burns {
+    from { transform: scale(1.15) translate(3%, 3%); }
+    to { transform: scale(1) translate(0%, 0%); }
+  }
+  @keyframes counter-scroll {
+    from { transform: translateY(30px); }
+    to { transform: translateY(-30px); }
+  }
+  @keyframes border-draw-x {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes border-draw-y {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+  @keyframes fade-slide-up-full {
+    0% { opacity: 0; transform: translateY(40px); }
+    15% { opacity: 1; transform: translateY(0); }
+    85% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+  }
+  @keyframes slide-from-right {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
 
   /* ─── SCROLL-DRIVEN ANIMATIONS ─── */
   @keyframes fade-slide-up {
@@ -97,6 +146,108 @@
     animation-timeline: view();
     animation-range: entry 0% entry 30%;
   }
+  .anim-clip-reveal {
+    animation: clip-reveal ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+  .anim-up-exit {
+    animation: fade-slide-up-full ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Parallax drift on section numerals */
+  .section-num {
+    animation: parallax-drift linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Word stagger in hero headline */
+  .hero-headline .word {
+    display: inline-block;
+    opacity: 0;
+    animation: word-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero-headline .word:nth-child(1) { animation-delay: 0.1s; }
+  .hero-headline .word:nth-child(2) { animation-delay: 0.18s; }
+  .hero-headline .word:nth-child(3) { animation-delay: 0.26s; }
+  .hero-headline .word:nth-child(4) { animation-delay: 0.32s; }
+  .hero-headline .word:nth-child(5) { animation-delay: 0.38s; }
+  .hero-headline .word:nth-child(6) { animation-delay: 0.44s; }
+  .hero-headline .word:nth-child(7) { animation-delay: 0.5s; }
+  .hero-headline .word:nth-child(8) { animation-delay: 0.56s; }
+  .hero-headline .word:nth-child(9) { animation-delay: 0.62s; }
+  .hero-headline .word:nth-child(10) { animation-delay: 0.68s; }
+  .hero-headline em .word:nth-child(1) { animation-delay: 0.76s; }
+  .hero-headline em .word:nth-child(2) { animation-delay: 0.84s; }
+  .hero-headline em .word:nth-child(3) { animation-delay: 0.92s; }
+  .hero-headline em .word:nth-child(4) { animation-delay: 1.0s; }
+
+  /* Border draw on pain cards */
+  .pain-card .border-line { position: absolute; background: #ab9318; }
+  .pain-card .border-line--top {
+    top: 0; left: 0; right: 0; height: 3px;
+    transform-origin: left;
+    animation: border-draw-x 0.6s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 25%;
+  }
+  .pain-card .border-line--right {
+    top: 0; right: 0; bottom: 0; width: 1px;
+    transform-origin: top;
+    background: rgba(171,147,24,0.2);
+    animation: border-draw-y 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 15% entry 35%;
+  }
+  .pain-card .border-line--bottom {
+    bottom: 0; left: 0; right: 0; height: 1px;
+    transform-origin: right;
+    background: rgba(171,147,24,0.2);
+    animation: border-draw-x 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 20% entry 40%;
+  }
+  .pain-card .border-line--left {
+    top: 0; left: 0; bottom: 0; width: 1px;
+    transform-origin: bottom;
+    background: rgba(171,147,24,0.2);
+    animation: border-draw-y 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 30%;
+  }
+
+  /* Staggered table row reveal */
+  .value-table tbody tr {
+    animation: slide-from-right 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  .value-table tbody tr:nth-child(2) { animation-delay: 100ms; }
+  .value-table tbody tr:nth-child(3) { animation-delay: 200ms; }
+  .value-table tbody tr:nth-child(4) { animation-delay: 300ms; }
+
+  /* Counter-scroll on proof bar */
+  .proof-bar {
+    animation: counter-scroll linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Scroll snap for desktop */
+  @media (min-width: 768px) {
+    html { scroll-snap-type: y proximity; }
+    .hero, .pain-section, .for-whom-section, .testimonials-section,
+    .solution-section, .mentor-section, .pricing-section, .faq-section,
+    .final-cta-section { scroll-snap-align: start; }
+  }
+
+  /* Pricing cards section-wide hover */
+  .pricing-grid:has(.pricing-card:hover) { filter: brightness(1.03); }
+  .pricing-card:hover ~ .pricing-card { opacity: 0.7; transform: scale(0.97); transition: opacity 0.4s, transform 0.4s; }
+  .pricing-card:not(.featured):hover ~ .pricing-card.featured { opacity: 0.7; transform: scale(1); }
 
   /* Stagger delays for grids */
   .pain-card:nth-child(2) { animation-delay: 80ms; }
@@ -158,7 +309,9 @@
 
   /* ─── URGENCY BANNER ─── */
   .urgency-banner {
-    background: linear-gradient(90deg, #8a7510, #ab9318, #c9ae2a, #ab9318, #8a7510);
+    background: linear-gradient(90deg, #8a7510, #ab9318, #c9ae2a, #f0d850, #c9ae2a, #ab9318, #8a7510, #ab9318, #c9ae2a, #f0d850, #c9ae2a, #ab9318, #8a7510);
+    background-size: 200% 100%;
+    animation: gradient-flow 8s linear infinite;
     color: #0a0a0a;
     text-align: center;
     padding: 14px 16px;
@@ -463,7 +616,8 @@
     background: #0a0a0a;
     color: #f8f5ef;
     padding: 32px 24px;
-    border-top: 3px solid #ab9318;
+    position: relative;
+    border-top: none;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
   }
   .pain-card:hover {
@@ -515,7 +669,20 @@
   .for-whom-section {
     background: linear-gradient(180deg, #0a0a0a 0%, #0d0b05 50%, #0a0a0a 100%);
     position: relative;
+    overflow: hidden;
   }
+  .for-whom-section::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(171,147,24,0.08) 0%, transparent 70%);
+    animation: morph-blob 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+  .for-whom-section .container { position: relative; z-index: 1; }
   /* Dot pattern decorativo */
   .for-whom-section::before {
     content: '';
@@ -754,10 +921,14 @@
     border: 2px solid #ab9318;
     overflow: hidden;
   }
+  .mentor-photo { overflow: hidden; }
   .mentor-photo img {
     position: absolute;
     top: 0; left: 0;
     width: 100%;
+    animation: scroll-ken-burns linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
     height: 100%;
     object-fit: cover;
     object-position: top center;
@@ -1262,8 +1433,8 @@
     <span class="dot"></span> Evento ao vivo &middot; 3h de imersão
   </div>
   <h1 class="hero-headline">
-    Pare de perder espaço para quem sabe menos que você,
-    <em>mas se posiciona melhor.</em>
+    <span class="word">Pare</span> <span class="word">de</span> <span class="word">perder</span> <span class="word">espaço</span> <span class="word">para</span> <span class="word">quem</span> <span class="word">sabe</span> <span class="word">menos</span> <span class="word">que</span> <span class="word">você,</span>
+    <em><span class="word">mas</span> <span class="word">se</span> <span class="word">posiciona</span> <span class="word">melhor.</span></em>
   </h1>
   <p class="hero-sub">
     Na <strong>Imersão P</strong>, você vai construir ao vivo o seu <strong>Posicionamento Único de Valor (PUV)</strong> — a mensagem que transforma sua expertise em autoridade percebida e faz o mercado pagar o que você realmente vale.
@@ -1301,31 +1472,47 @@
 <!-- 4. DOR (PAIN) + CTA #2 -->
 <section class="pain-section">
   <div class="container">
-    <span class="section-num anim-left">01</span>
+    <span class="section-num">01</span>
     <p class="section-label anim-left">O Diagnóstico</p>
-    <h2 class="section-title anim-up">O mercado não paga pelo quanto você sabe, mas pelo quanto ele <em class="highlight-word">percebe que você vale.</em></h2>
+    <h2 class="section-title anim-clip-reveal">O mercado não paga pelo quanto você sabe, mas pelo quanto ele <em class="highlight-word">percebe que você vale.</em></h2>
 
-    <div class="pain-lead anim-up">
+    <div class="pain-lead anim-up-exit">
       Você sente que é um "especialista invisível"? Aquele que tem resultados reais, mas assiste a concorrentes menos qualificados sendo convidados para eventos e fechando contratos maiores?
     </div>
 
     <div class="pain-grid">
       <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
         <div class="pain-icon">&#128184;</div>
         <div class="pain-title">A Batalha do Preço</div>
         <div class="pain-desc">Suas propostas são sempre respondidas com "dá para dar um desconto?". Você é comparado por preço, não por valor.</div>
       </div>
       <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
         <div class="pain-icon">&#128230;</div>
         <div class="pain-title">O Especialista Commodity</div>
         <div class="pain-desc">Para o mercado, você é apenas "mais um". Se você sumir hoje, o cliente te substitui em 5 minutos por alguém mais barato no Google.</div>
       </div>
       <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
         <div class="pain-icon">&#128274;</div>
         <div class="pain-title">O Teto de Vidro</div>
         <div class="pain-desc">Você trabalha 12h por dia, mas sua conta bancária estagnou. Sua experiência é vasta, mas seus ganhos não refletem sua bagagem profissional.</div>
       </div>
       <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
         <div class="pain-icon">&#128123;</div>
         <div class="pain-title">A Invisibilidade Digital</div>
         <div class="pain-desc">Você existe no mercado, mas não é visto. Sua autoridade e seu conhecimento ficam presos dentro de você — sem impacto, sem alcance, sem resultado.</div>
@@ -1353,7 +1540,7 @@
 <!-- 5. PARA QUEM -->
 <section class="for-whom-section">
   <div class="container">
-    <span class="section-num anim-left">02</span>
+    <span class="section-num">02</span>
     <p class="section-label anim-left">Para Quem é Isso</p>
     <h2 class="section-title anim-up">Este encontro foi desenhado <em class="highlight-word highlight-gold">para você.</em></h2>
 
@@ -1384,7 +1571,7 @@
 <!-- 6. DEPOIMENTOS -->
 <section class="testimonials-section">
   <div class="container">
-    <span class="section-num anim-left">03</span>
+    <span class="section-num">03</span>
     <p class="section-label anim-left">Depoimentos</p>
     <h2 class="section-title anim-up">Quem participou <em class="highlight-word">transformou</em> sua presença no mercado.</h2>
 
@@ -1414,10 +1601,10 @@
 <!-- 7. SOLUÇÃO (4 Pilares) + CTA #3 -->
 <section class="solution-section">
   <div class="container">
-    <span class="section-num anim-left">04</span>
+    <span class="section-num">04</span>
     <p class="section-label anim-left">A Solução</p>
-    <h2 class="section-title anim-up">Chegou a hora de cobrar o que sua experiência realmente vale.</h2>
-    <p class="solution-intro anim-up">
+    <h2 class="section-title anim-clip-reveal">Chegou a hora de cobrar o que sua experiência realmente vale.</h2>
+    <p class="solution-intro anim-up-exit">
       A Imersão P não é um curso gravado que você vai abandonar. É um <strong>workshop de construção ao vivo de 3 horas</strong> com Gisele Machado. Diferente de uma aula passiva, ela vai te guiar através da Ferramenta de Criação do PUV (Posicionamento Único de Valor). Gisele só avança para o próximo pilar quando você terminar o anterior.
     </p>
 
@@ -1455,7 +1642,7 @@
 <!-- 8. MENTORA -->
 <section class="mentor-section">
   <div class="container">
-    <span class="section-num anim-left">05</span>
+    <span class="section-num">05</span>
     <p class="section-label anim-left">A Mentora</p>
     <h2 class="section-title anim-up">Gisele Machado</h2>
 
@@ -1499,9 +1686,9 @@
 <!-- 9. PRICING MEGA-SECTION -->
 <section class="pricing-section" id="pricing">
   <div class="container">
-    <span class="section-num anim-left">06</span>
+    <span class="section-num">06</span>
     <p class="section-label anim-left">Investimento</p>
-    <h2 class="section-title anim-up">Quanto custaria montar tudo isso por conta própria?</h2>
+    <h2 class="section-title anim-clip-reveal">Quanto custaria montar tudo isso por conta própria?</h2>
 
     <table class="value-table anim-up">
       <thead>
@@ -1595,7 +1782,7 @@
 <!-- 10. FAQ -->
 <section class="faq-section">
   <div class="container">
-    <span class="section-num anim-left">07</span>
+    <span class="section-num">07</span>
     <p class="section-label anim-left">Dúvidas Frequentes</p>
     <h2 class="section-title anim-up">Suas perguntas, respondidas.</h2>
 
@@ -1637,7 +1824,7 @@
 <!-- 11. CTA FINAL #5 -->
 <section class="final-cta-section">
   <div style="position:relative;z-index:1;">
-    <p class="final-tagline">"Foque no seu CPF para faturar no seu CNPJ."</p>
+    <p class="final-tagline anim-up-exit">"Foque no seu CPF para faturar no seu CNPJ."</p>
     <h2 class="section-title" style="text-align:center;">22 anos de experiência condensados<br><em style="color:#ab9318;font-style:italic;">em um método prático de 3 horas.</em></h2>
     <p class="final-sub">Construa seu Posicionamento Único de Valor ao vivo com Gisele Machado. Método testado. Resultados reais. Vagas limitadas.</p>
     <div>
