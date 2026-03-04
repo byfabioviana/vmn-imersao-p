@@ -13,13 +13,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
-  /* Google Fonts via @import (compatível com RD Station) */
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap');
 
   /* ═══════════════════════════════════════
      RESET & BASE
-     Spacing scale: 8 · 16 · 24 · 32 · 48 · 64 · 96
-     Opacity tiers: 1.0 · 0.82 · 0.7 · 0.4
      ═══════════════════════════════════════ */
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -44,7 +41,7 @@
     background-size: 3px 3px;
   }
 
-  /* ─── ANIMATIONS (CSS-only) ─── */
+  /* ─── ANIMATIONS ─── */
   @keyframes shimmer {
     0% { background-position: -200% center; }
     100% { background-position: 200% center; }
@@ -52,10 +49,6 @@
   @keyframes pulse-border {
     0%, 100% { box-shadow: 0 0 0 0 rgba(171,147,24,0.4); }
     50% { box-shadow: 0 0 0 8px rgba(171,147,24,0); }
-  }
-  @keyframes float-glow {
-    0%, 100% { box-shadow: 0 0 30px rgba(171,147,24,0.15); }
-    50% { box-shadow: 0 0 50px rgba(171,147,24,0.3); }
   }
   @keyframes live-pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
@@ -65,12 +58,103 @@
     0% { left: -100%; }
     100% { left: 200%; }
   }
+  @keyframes aurora-breathe {
+    0%, 100% { opacity: 0.12; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    33% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.1) rotate(2deg); }
+    66% { opacity: 0.08; transform: translate(-50%, -50%) scale(0.95) rotate(-1deg); }
+  }
+  @keyframes divider-glow {
+    0%, 100% { width: 60px; opacity: 0.6; }
+    50% { width: 120px; opacity: 1; }
+  }
 
-  /* ─── FOCUS STATES (accessibility) ─── */
+  /* ─── SCROLL-DRIVEN ANIMATIONS ─── */
+  @keyframes fade-slide-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-scale-in {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slide-from-left {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .anim-up {
+    animation: fade-slide-up ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  .anim-scale {
+    animation: fade-scale-in ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  .anim-left {
+    animation: slide-from-left ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+
+  /* Stagger delays for grids */
+  .pain-card:nth-child(2) { animation-delay: 80ms; }
+  .pain-card:nth-child(3) { animation-delay: 160ms; }
+  .pain-card:nth-child(4) { animation-delay: 240ms; }
+  .profile-card:nth-child(2) { animation-delay: 100ms; }
+  .profile-card:nth-child(3) { animation-delay: 200ms; }
+  .pillar-card:nth-child(2) { animation-delay: 80ms; }
+  .pillar-card:nth-child(3) { animation-delay: 160ms; }
+  .pillar-card:nth-child(4) { animation-delay: 240ms; }
+
+  /* ─── FOCUS STATES ─── */
   a:focus-visible, button:focus-visible, label:focus-visible, input:focus-visible {
     outline: 2px solid #c9ae2a;
     outline-offset: 3px;
   }
+
+  /* ─── SECTION NUMERALS ─── */
+  .section-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 900;
+    color: rgba(171,147,24,0.04);
+    line-height: 0.8;
+    margin-bottom: -48px;
+    display: block;
+    letter-spacing: -4px;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .pain-section .section-num,
+  .testimonials-section .section-num,
+  .mentor-section .section-num { color: rgba(138,117,16,0.06); }
+  .solution-section .section-num { color: rgba(10,10,10,0.06); }
+
+  /* ─── HIGHLIGHT WORD (animated underline) ─── */
+  .highlight-word {
+    color: #8a7510;
+    font-style: italic;
+    position: relative;
+    display: inline;
+  }
+  .highlight-word::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8a7510, #c9ae2a);
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .highlight-word:hover::after { width: 100%; }
+  .anim-up .highlight-word::after { width: 100%; }
+
+  /* Gold variant for dark backgrounds */
+  .highlight-gold { color: #ab9318; }
+  .highlight-gold::after { background: linear-gradient(90deg, #ab9318, #f0d850); }
 
   /* ─── URGENCY BANNER ─── */
   .urgency-banner {
@@ -106,12 +190,30 @@
     overflow: hidden;
     text-align: center;
   }
+  /* Multi-gradient mesh (Stripe-inspired) */
   .hero::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(171,147,24,0.15) 0%, transparent 70%);
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(171,147,24,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(184,115,58,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 80%, rgba(138,117,16,0.08) 0%, transparent 50%);
     pointer-events: none;
+  }
+  /* Aurora breathe glow */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(171,147,24,0.3) 0%, rgba(138,117,16,0.1) 40%, transparent 70%);
+    animation: aurora-breathe 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(60px);
   }
 
   .hero-badge {
@@ -127,6 +229,8 @@
     color: #ab9318;
     margin-bottom: 32px;
     background: rgba(171,147,24,0.06);
+    position: relative;
+    z-index: 1;
   }
   .hero-badge .dot {
     width: 6px; height: 6px;
@@ -140,13 +244,14 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(2rem, 5vw, 3.8rem);
     font-weight: 900;
-    line-height: 1.15;
+    line-height: 1.1;
     text-align: center;
     max-width: 900px;
-    color: #f8f5ef;
+    color: #f5e6c8;
     margin-bottom: 8px;
     position: relative;
     z-index: 1;
+    letter-spacing: -0.5px;
   }
   .hero-headline em {
     font-style: italic;
@@ -171,7 +276,7 @@
     z-index: 1;
   }
 
-  /* ─── CTA BUTTONS (4 variantes) ─── */
+  /* ─── CTA BUTTONS ─── */
   .cta-btn {
     display: inline-block;
     background: #ab9318;
@@ -185,11 +290,10 @@
     text-decoration: none;
     border: 2px solid #ab9318;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     overflow: hidden;
   }
-  /* CTA shine effect on hover */
   .cta-btn::before {
     content: '';
     position: absolute;
@@ -207,10 +311,10 @@
     background: #c9ae2a;
     border-color: #c9ae2a;
     transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(171,147,24,0.4);
+    box-shadow: 0 4px 12px rgba(171,147,24,0.3), 0 16px 40px rgba(171,147,24,0.2);
+    letter-spacing: 3px;
   }
 
-  /* Variante: outline pulsante */
   .cta-btn.pulse {
     background: transparent;
     color: #c9ae2a;
@@ -223,7 +327,6 @@
     animation: none;
   }
 
-  /* Variante: invertido */
   .cta-btn.inverted {
     background: #0a0a0a;
     color: #ab9318;
@@ -235,7 +338,6 @@
     border-color: #111;
   }
 
-  /* Variante: dramático final */
   .cta-btn.dramatic {
     font-size: 1.25rem;
     padding: 24px 56px;
@@ -252,7 +354,6 @@
   .cta-center { text-align: center; margin-top: 48px; }
   .cta-note { font-size: 0.78rem; color: rgba(248,245,239,0.4); margin-top: 12px; }
 
-  /* ─── CTA BLOCK (standalone) ─── */
   .cta-block {
     background: #0a0a0a;
     padding: 48px 24px;
@@ -279,10 +380,10 @@
     font-weight: 600;
     color: #ab9318;
     letter-spacing: 1px;
-    transition: transform 0.2s, color 0.2s;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s;
   }
   .proof-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     color: #c9ae2a;
   }
   .proof-item svg { width: 18px; height: 18px; fill: #ab9318; transition: fill 0.2s; }
@@ -318,19 +419,23 @@
     margin-bottom: 24px;
   }
 
-  /* Separador decorativo dourado */
+  /* Separador decorativo dourado — breathing */
   .gold-divider {
     display: block;
     width: 60px;
     height: 1px;
     margin: 0 auto;
-    background: linear-gradient(90deg, transparent, #ab9318, transparent);
-    transition: width 0.4s;
+    background: linear-gradient(90deg, transparent, #c9ae2a, transparent);
+    animation: divider-glow 4s ease-in-out infinite;
+    border: none;
   }
-  .gold-divider:hover { width: 120px; }
 
   /* ─── PAIN SECTION ─── */
-  .pain-section { background: #f8f5ef; color: #0a0a0a; }
+  .pain-section {
+    background: #f8f5ef;
+    color: #0a0a0a;
+    position: relative;
+  }
   .pain-section .section-title { color: #0a0a0a; }
   .pain-section .section-label { color: #8a7510; }
   .pain-section .section-label::after { background: #8a7510; }
@@ -359,11 +464,14 @@
     color: #f8f5ef;
     padding: 32px 24px;
     border-top: 3px solid #ab9318;
-    transition: transform 0.25s, box-shadow 0.25s;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
   }
   .pain-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    transform: translateY(-6px);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.1),
+      0 8px 16px rgba(0,0,0,0.15),
+      0 24px 48px rgba(0,0,0,0.2);
   }
   .pain-icon { font-size: 2rem; margin-bottom: 16px; }
   .pain-title {
@@ -377,10 +485,12 @@
   }
   .pain-desc { font-size: 0.92rem; line-height: 1.65; color: rgba(248,245,239,0.7); }
 
+  /* Pain warning — accent cobre */
   .pain-warning {
     margin-top: 48px;
     background: #0a0a0a;
-    border: 1px solid rgba(171,147,24,0.3);
+    border: 1px solid rgba(184,115,58,0.3);
+    border-left: 4px solid #b8733a;
     padding: 24px 32px;
     display: flex;
     gap: 16px;
@@ -388,7 +498,7 @@
   }
   .warn-icon { font-size: 2rem; flex-shrink: 0; }
   .warn-text { font-size: 0.95rem; line-height: 1.6; color: rgba(248,245,239,0.7); }
-  .warn-text strong { color: #ab9318; }
+  .warn-text strong { color: #b8733a; }
 
   .pain-section .cta-center .cta-btn.pulse {
     background: #0a0a0a;
@@ -404,24 +514,55 @@
   /* ─── PARA QUEM ─── */
   .for-whom-section {
     background: linear-gradient(180deg, #0a0a0a 0%, #0d0b05 50%, #0a0a0a 100%);
+    position: relative;
+  }
+  /* Dot pattern decorativo */
+  .for-whom-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(171,147,24,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
   }
 
   .profiles-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
+    position: relative;
   }
   @media(min-width: 700px) { .profiles-grid { grid-template-columns: repeat(3, 1fr); } }
 
+  /* Profile card with gradient border */
   .profile-card {
-    border: 1px solid rgba(171,147,24,0.2);
     padding: 32px 24px;
-    transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+    position: relative;
+    background: #0a0a0a;
+    border: none;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  }
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(171,147,24,0.4) 0%, rgba(171,147,24,0.08) 50%, rgba(171,147,24,0.3) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background 0.3s;
+  }
+  .profile-card:hover::before {
+    background: linear-gradient(135deg, rgba(201,174,42,0.8) 0%, rgba(171,147,24,0.3) 50%, rgba(201,174,42,0.6) 100%);
   }
   .profile-card:hover {
-    border-color: #ab9318;
-    box-shadow: 0 0 24px rgba(171,147,24,0.08);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow:
+      0 2px 4px rgba(171,147,24,0.05),
+      0 12px 24px rgba(0,0,0,0.15),
+      0 32px 64px rgba(0,0,0,0.1);
   }
   .profile-icon { font-size: 2.5rem; margin-bottom: 16px; }
   .profile-title {
@@ -435,11 +576,8 @@
   }
   .profile-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(248,245,239,0.7); }
 
-  /* Border separator between profile cards on mobile */
   @media(max-width: 699px) {
-    .profile-card + .profile-card {
-      border-top: 1px solid rgba(171,147,24,0.15);
-    }
+    .profile-card + .profile-card { border-top: 1px solid rgba(171,147,24,0.15); }
   }
 
   /* ─── TESTIMONIALS ─── */
@@ -455,16 +593,22 @@
   }
   @media(min-width: 640px) { .testimonials-grid { grid-template-columns: 1fr 1fr; } }
 
+  /* Glassmorphism testimonial cards */
   .testimonial-card {
-    background: #0a0a0a;
+    background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(20,18,8,0.9) 100%);
     color: #f8f5ef;
     padding: 32px 24px;
     border-bottom: 3px solid #ab9318;
-    transition: transform 0.25s, box-shadow 0.25s;
+    border-left: 1px solid rgba(171,147,24,0.08);
+    border-right: 1px solid rgba(171,147,24,0.04);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
   }
   .testimonial-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    transform: translateY(-6px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.1),
+      0 16px 32px rgba(0,0,0,0.2),
+      0 32px 64px rgba(0,0,0,0.15);
   }
   .result-badge {
     display: inline-block;
@@ -512,11 +656,14 @@
     padding: 32px 24px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.25s, box-shadow 0.25s;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
   }
   .pillar-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    transform: translateY(-6px) rotateX(2deg);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.15),
+      0 16px 32px rgba(0,0,0,0.25),
+      0 32px 64px rgba(0,0,0,0.2);
   }
   .pillar-card::before {
     content: attr(data-num);
@@ -528,6 +675,21 @@
     color: rgba(171,147,24,0.12);
     line-height: 1;
   }
+  /* Gold line that appears on hover */
+  .pillar-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #c9ae2a, transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pillar-card:hover::after {
+    transform: scaleX(1);
+  }
   .pillar-tag {
     font-size: 0.7rem;
     letter-spacing: 3px;
@@ -535,6 +697,28 @@
     color: #ab9318;
     font-weight: 700;
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  /* Progress bar in pillar tag */
+  .pillar-tag::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: rgba(171,147,24,0.15);
+  }
+  .pillar-card[data-num="1"] .pillar-tag::after {
+    background: linear-gradient(90deg, #ab9318 25%, rgba(171,147,24,0.15) 25%);
+  }
+  .pillar-card[data-num="2"] .pillar-tag::after {
+    background: linear-gradient(90deg, #ab9318 50%, rgba(171,147,24,0.15) 50%);
+  }
+  .pillar-card[data-num="3"] .pillar-tag::after {
+    background: linear-gradient(90deg, #ab9318 75%, rgba(171,147,24,0.15) 75%);
+  }
+  .pillar-card[data-num="4"] .pillar-tag::after {
+    background: #ab9318;
   }
   .pillar-title {
     font-family: 'Barlow Condensed', Arial, sans-serif;
@@ -610,19 +794,37 @@
   .mentor-bio { font-size: 0.95rem; line-height: 1.75; color: rgba(0,0,0,0.7); }
   .mentor-bio strong { color: #0a0a0a; }
   .mentor-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+
+  /* Tags with fill effect */
   .tag {
-    background: #0a0a0a;
+    background: transparent;
     color: #ab9318;
     font-size: 0.72rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 700;
     padding: 8px 16px;
-    transition: background 0.2s, color 0.2s;
+    border: 1px solid rgba(171,147,24,0.3);
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s, border-color 0.3s;
+    z-index: 0;
+  }
+  .tag::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0;
+    background: #0a0a0a;
+    transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
   }
   .tag:hover {
-    background: #ab9318;
-    color: #0a0a0a;
+    color: #c9ae2a;
+    border-color: #0a0a0a;
+  }
+  .tag:hover::before {
+    height: 100%;
   }
 
   /* ─── PRICING MEGA-SECTION ─── */
@@ -634,7 +836,6 @@
   .pricing-section .section-label::after { background: #0a0a0a; opacity: 0.4; }
   .pricing-section .section-title { color: #0a0a0a; }
 
-  /* Tabela de ancoragem */
   .value-table {
     width: 100%;
     max-width: 600px;
@@ -679,7 +880,6 @@
     font-size: 1.3rem;
   }
 
-  /* Pricing cards */
   .pricing-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -689,26 +889,44 @@
   }
   @media(min-width: 640px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
 
+  /* Pricing cards with glass gradient */
   .pricing-card {
-    background: #0a0a0a;
+    background: linear-gradient(145deg, rgba(10,10,10,1) 0%, rgba(18,16,8,1) 50%, rgba(10,10,10,1) 100%);
     color: #f8f5ef;
     padding: 32px 24px;
     position: relative;
     border-top: 4px solid transparent;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+  }
+  /* Glass highlight */
+  .pricing-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(248,245,239,0.03) 0%, transparent 100%);
+    pointer-events: none;
   }
   .pricing-card.featured {
     border-top-color: #c9ae2a;
     transform: scale(1.03);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    box-shadow:
+      0 16px 48px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(201,174,42,0.15),
+      inset 0 0 32px rgba(171,147,24,0.03);
   }
   .pricing-card.featured:hover {
     transform: scale(1.05);
-    box-shadow: 0 20px 56px rgba(0,0,0,0.5);
+    box-shadow:
+      0 20px 56px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(201,174,42,0.2);
   }
   .pricing-card:not(.featured):hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    transform: translateY(-6px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.1),
+      0 16px 32px rgba(0,0,0,0.2),
+      0 32px 64px rgba(0,0,0,0.15);
   }
   .pricing-card.featured::before {
     content: '\2726 RECOMENDADO';
@@ -720,6 +938,7 @@
     font-weight: 800;
     letter-spacing: 2px;
     padding: 4px 12px;
+    z-index: 1;
   }
 
   .price-label { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(248,245,239,0.4); font-weight: 600; margin-bottom: 8px; }
@@ -768,16 +987,12 @@
     border: 2px solid #ab9318;
     position: relative;
     overflow: hidden;
+    z-index: 1;
   }
   .pricing-card:not(.featured) .price-cta { background: transparent; color: #ab9318; }
   .price-cta:hover { background: #c9ae2a; color: #0a0a0a; border-color: #c9ae2a; }
-  /* Featured card CTA pulse */
-  .pricing-card.featured .price-cta {
-    animation: pulse-border 2.5s ease-in-out infinite;
-  }
-  .pricing-card.featured .price-cta:hover {
-    animation: none;
-  }
+  .pricing-card.featured .price-cta { animation: pulse-border 2.5s ease-in-out infinite; }
+  .pricing-card.featured .price-cta:hover { animation: none; }
   .price-urgency {
     display: block;
     text-align: center;
@@ -805,19 +1020,39 @@
   }
   .hotseat-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(0,0,0,0.7); }
 
-  /* Garantia */
+  /* Garantia with decorative corners */
   .guarantee-box {
     max-width: 700px;
     margin: 48px auto 0;
-    background: #0a0a0a;
+    background: radial-gradient(ellipse at center, rgba(15,13,5,1) 0%, rgba(10,10,10,1) 100%);
     border: 2px solid rgba(171,147,24,0.5);
     padding: 32px;
     text-align: center;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
   }
   .guarantee-box:hover {
     border-color: #c9ae2a;
-    box-shadow: 0 0 32px rgba(171,147,24,0.15);
+    box-shadow: 0 0 32px rgba(171,147,24,0.15), inset 0 0 48px rgba(171,147,24,0.03);
+    transform: scale(1.02);
+  }
+  /* Corner accents */
+  .guarantee-box::before,
+  .guarantee-box::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: #c9ae2a;
+    border-style: solid;
+  }
+  .guarantee-box::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+  .guarantee-box::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
   }
   .guarantee-icon { font-size: 2.5rem; margin-bottom: 8px; }
   .guarantee-title {
@@ -840,7 +1075,7 @@
   .pricing-section .cta-btn.inverted { background: #0a0a0a; color: #ab9318; border-color: #0a0a0a; margin-top: 48px; }
   .pricing-section .cta-btn.inverted:hover { background: #111; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
 
-  /* ─── FAQ (CSS-only accordion) ─── */
+  /* ─── FAQ ─── */
   .faq-section {
     background: linear-gradient(180deg, #0a0a0a 0%, #0e0c06 50%, #0a0a0a 100%);
   }
@@ -999,6 +1234,9 @@
     .final-cta-section { padding: 48px 16px; }
     .mentor-stats { gap: 24px; }
     .stat-num { font-size: 2rem; }
+    .section-num { font-size: 5rem; margin-bottom: -32px; }
+    /* Remove noise on mobile for performance */
+    body::after { display: none; }
   }
   @media(max-width: 479px) {
     .hero-headline { font-size: 1.7rem; }
@@ -1006,6 +1244,7 @@
     .section-title { font-size: 1.4rem; }
     .proof-bar { gap: 12px; }
     .proof-item { font-size: 0.68rem; }
+    .section-num { font-size: 4rem; margin-bottom: -24px; }
   }
 </style>
 </head>
@@ -1017,7 +1256,7 @@
   <span class="banner-date">30 DE MARÇO &middot; 19H &middot; AO VIVO</span>
 </div>
 
-<!-- 2. HERO + CTA #1 -->
+<!-- 2. HERO -->
 <header class="hero">
   <div class="hero-badge">
     <span class="dot"></span> Evento ao vivo &middot; 3h de imersão
@@ -1059,47 +1298,47 @@
   </div>
 </div>
 
-<!-- 4. DOR (PAIN SECTION) + CTA #2 -->
+<!-- 4. DOR (PAIN) + CTA #2 -->
 <section class="pain-section">
   <div class="container">
-    <p class="section-label">O Diagnóstico</p>
-    <h2 class="section-title">O mercado não paga pelo quanto você sabe, mas pelo quanto ele <em style="color:#8a7510">percebe que você vale.</em></h2>
+    <span class="section-num anim-left">01</span>
+    <p class="section-label anim-left">O Diagnóstico</p>
+    <h2 class="section-title anim-up">O mercado não paga pelo quanto você sabe, mas pelo quanto ele <em class="highlight-word">percebe que você vale.</em></h2>
 
-    <div class="pain-lead">
+    <div class="pain-lead anim-up">
       Você sente que é um "especialista invisível"? Aquele que tem resultados reais, mas assiste a concorrentes menos qualificados sendo convidados para eventos e fechando contratos maiores?
     </div>
 
     <div class="pain-grid">
-      <div class="pain-card">
+      <div class="pain-card anim-up">
         <div class="pain-icon">&#128184;</div>
         <div class="pain-title">A Batalha do Preço</div>
         <div class="pain-desc">Suas propostas são sempre respondidas com "dá para dar um desconto?". Você é comparado por preço, não por valor.</div>
       </div>
-      <div class="pain-card">
+      <div class="pain-card anim-up">
         <div class="pain-icon">&#128230;</div>
         <div class="pain-title">O Especialista Commodity</div>
         <div class="pain-desc">Para o mercado, você é apenas "mais um". Se você sumir hoje, o cliente te substitui em 5 minutos por alguém mais barato no Google.</div>
       </div>
-      <div class="pain-card">
+      <div class="pain-card anim-up">
         <div class="pain-icon">&#128274;</div>
         <div class="pain-title">O Teto de Vidro</div>
         <div class="pain-desc">Você trabalha 12h por dia, mas sua conta bancária estagnou. Sua experiência é vasta, mas seus ganhos não refletem sua bagagem profissional.</div>
       </div>
-      <div class="pain-card">
+      <div class="pain-card anim-up">
         <div class="pain-icon">&#128123;</div>
         <div class="pain-title">A Invisibilidade Digital</div>
         <div class="pain-desc">Você existe no mercado, mas não é visto. Sua autoridade e seu conhecimento ficam presos dentro de você — sem impacto, sem alcance, sem resultado.</div>
       </div>
     </div>
 
-    <div class="pain-warning">
+    <div class="pain-warning anim-up">
       <div class="warn-icon">&#9888;&#65039;</div>
       <div class="warn-text">
         <strong>Cuidado:</strong> A invisibilidade é o cemitério dos bons profissionais. Continuar ignorando seu posicionamento é o caminho mais rápido para o esgotamento financeiro.
       </div>
     </div>
 
-    <!-- CTA #2 -->
     <div class="cta-center">
       <a href="#pricing" class="cta-btn pulse">
         Quero Sair da Invisibilidade
@@ -1109,27 +1348,27 @@
   </div>
 </section>
 
-<!-- Separador decorativo -->
 <span class="gold-divider"></span>
 
 <!-- 5. PARA QUEM -->
 <section class="for-whom-section">
   <div class="container">
-    <p class="section-label">Para Quem é Isso</p>
-    <h2 class="section-title">Este encontro foi desenhado <em style="color:#ab9318">para você.</em></h2>
+    <span class="section-num anim-left">02</span>
+    <p class="section-label anim-left">Para Quem é Isso</p>
+    <h2 class="section-title anim-up">Este encontro foi desenhado <em class="highlight-word highlight-gold">para você.</em></h2>
 
     <div class="profiles-grid">
-      <div class="profile-card">
+      <div class="profile-card anim-up">
         <div class="profile-icon">&#127919;</div>
         <div class="profile-title">O Iniciante Estratégico</div>
         <div class="profile-desc">Para você que está começando e já deseja iniciar no mercado com o posicionamento correto, evitando anos de invisibilidade.</div>
       </div>
-      <div class="profile-card">
+      <div class="profile-card anim-up">
         <div class="profile-icon">&#127942;</div>
         <div class="profile-title">O Especialista Experiente</div>
         <div class="profile-desc">Para você que já tem muita bagagem, mas nunca criou um posicionamento intencional ou deseja validar sua mensagem para escalar seu valor.</div>
       </div>
-      <div class="profile-card">
+      <div class="profile-card anim-up">
         <div class="profile-icon">&#127970;</div>
         <div class="profile-title">O Dono de Negócio</div>
         <div class="profile-desc">Seja para clínicas, escritórios ou negócios digitais que buscam clientes qualificados — ou para transicionar sua autoridade para o online.</div>
@@ -1145,11 +1384,12 @@
 <!-- 6. DEPOIMENTOS -->
 <section class="testimonials-section">
   <div class="container">
-    <p class="section-label">Depoimentos</p>
-    <h2 class="section-title">Quem participou <em style="color:#8a7510">transformou</em> sua presença no mercado.</h2>
+    <span class="section-num anim-left">03</span>
+    <p class="section-label anim-left">Depoimentos</p>
+    <h2 class="section-title anim-up">Quem participou <em class="highlight-word">transformou</em> sua presença no mercado.</h2>
 
     <div class="testimonials-grid">
-      <div class="testimonial-card">
+      <div class="testimonial-card anim-scale">
         <div class="result-badge">Conteúdo de mentoria de altíssimo valor</div>
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <div class="quote-mark">&ldquo;</div>
@@ -1157,7 +1397,7 @@
         <div class="testimonial-author">Ivani Restrepo</div>
         <div class="testimonial-role">Empresária e Mentora</div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card anim-scale">
         <div class="result-badge">Técnica + prática = resultados reais</div>
         <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <div class="quote-mark">&ldquo;</div>
@@ -1169,42 +1409,41 @@
   </div>
 </section>
 
-<!-- Separador decorativo -->
 <span class="gold-divider"></span>
 
 <!-- 7. SOLUÇÃO (4 Pilares) + CTA #3 -->
 <section class="solution-section">
   <div class="container">
-    <p class="section-label">A Solução</p>
-    <h2 class="section-title">Chegou a hora de cobrar o que sua experiência realmente vale.</h2>
-    <p class="solution-intro">
+    <span class="section-num anim-left">04</span>
+    <p class="section-label anim-left">A Solução</p>
+    <h2 class="section-title anim-up">Chegou a hora de cobrar o que sua experiência realmente vale.</h2>
+    <p class="solution-intro anim-up">
       A Imersão P não é um curso gravado que você vai abandonar. É um <strong>workshop de construção ao vivo de 3 horas</strong> com Gisele Machado. Diferente de uma aula passiva, ela vai te guiar através da Ferramenta de Criação do PUV (Posicionamento Único de Valor). Gisele só avança para o próximo pilar quando você terminar o anterior.
     </p>
 
     <div class="pillars-grid">
-      <div class="pillar-card" data-num="1">
+      <div class="pillar-card anim-up" data-num="1">
         <div class="pillar-tag">Pilar 1</div>
         <div class="pillar-title">O Cliente Específico</div>
         <div class="pillar-desc">Identifique o momento exato onde sua expertise é rara e necessária.</div>
       </div>
-      <div class="pillar-card" data-num="2">
+      <div class="pillar-card anim-up" data-num="2">
         <div class="pillar-tag">Pilar 2</div>
         <div class="pillar-title">A Grande Dor</div>
         <div class="pillar-desc">Mapeie a consequência financeira e a emoção dominante do seu público.</div>
       </div>
-      <div class="pillar-card" data-num="3">
+      <div class="pillar-card anim-up" data-num="3">
         <div class="pillar-tag">Pilar 3</div>
         <div class="pillar-title">Seu Método Único</div>
         <div class="pillar-desc">Crie um nome magnético e uma palavra-chave de ação para sua forma de trabalhar.</div>
       </div>
-      <div class="pillar-card" data-num="4">
+      <div class="pillar-card anim-up" data-num="4">
         <div class="pillar-tag">Pilar 4</div>
         <div class="pillar-title">O Resultado Transformador</div>
         <div class="pillar-desc">Estabeleça a métrica de ganho real que torna você um ímã de clientes.</div>
       </div>
     </div>
 
-    <!-- CTA #3 -->
     <div class="cta-center">
       <a href="#pricing" class="cta-btn inverted">
         Construir Meu PUV Agora
@@ -1216,17 +1455,18 @@
 <!-- 8. MENTORA -->
 <section class="mentor-section">
   <div class="container">
-    <p class="section-label">A Mentora</p>
-    <h2 class="section-title">Gisele Machado</h2>
+    <span class="section-num anim-left">05</span>
+    <p class="section-label anim-left">A Mentora</p>
+    <h2 class="section-title anim-up">Gisele Machado</h2>
 
     <div class="mentor-inner">
-      <div>
+      <div class="anim-scale">
         <div class="mentor-photo">
           <img src="img/ftGm.jpeg" alt="Gisele Machado — Mentora, Jornalista e Especialista em Posicionamento" loading="lazy" width="400" height="532">
           <div class="mentor-photo-label">GISELE<br>MACHADO</div>
         </div>
       </div>
-      <div>
+      <div class="anim-up">
         <div class="mentor-stats">
           <div class="mentor-stat">
             <div class="stat-num">22+</div>
@@ -1259,11 +1499,11 @@
 <!-- 9. PRICING MEGA-SECTION -->
 <section class="pricing-section" id="pricing">
   <div class="container">
-    <p class="section-label">Investimento</p>
-    <h2 class="section-title">Quanto custaria montar tudo isso por conta própria?</h2>
+    <span class="section-num anim-left">06</span>
+    <p class="section-label anim-left">Investimento</p>
+    <h2 class="section-title anim-up">Quanto custaria montar tudo isso por conta própria?</h2>
 
-    <!-- Tabela de ancoragem -->
-    <table class="value-table">
+    <table class="value-table anim-up">
       <thead>
         <tr>
           <th>Solução</th>
@@ -1290,12 +1530,10 @@
       </tbody>
     </table>
 
-    <!-- Subtitle -->
     <p style="text-align:center;margin-bottom:48px;font-size:0.92rem;opacity:0.7;">Escolha seu ingresso e comece sua transformação.</p>
 
-    <!-- Pricing cards -->
     <div class="pricing-grid">
-      <div class="pricing-card">
+      <div class="pricing-card anim-up">
         <div class="price-label">Ingresso</div>
         <div class="price-type">Normal</div>
         <div class="price-old">De R$297</div>
@@ -1313,7 +1551,7 @@
         <span class="price-urgency">Poucas vagas restantes nesta categoria</span>
       </div>
 
-      <div class="pricing-card featured">
+      <div class="pricing-card featured anim-up">
         <div class="price-label">Ingresso</div>
         <div class="price-type">VIP</div>
         <div class="price-old">De R$497</div>
@@ -1332,13 +1570,12 @@
       </div>
     </div>
 
-    <div class="hotseat-box">
+    <div class="hotseat-box anim-up">
       <div class="hotseat-title">&#10022; O que é o Hotseat VIP?</div>
       <div class="hotseat-desc">É um momento exclusivo após a imersão onde a Gisele guia profissionais que optaram pelo VIP à "cadeira quente". Ela analisa o seu negócio especificamente, respondendo suas dúvidas e ajustando seu posicionamento ao vivo — como uma consultoria individual em grupo.</div>
     </div>
 
-    <!-- Garantia -->
-    <div class="guarantee-box">
+    <div class="guarantee-box anim-scale">
       <div class="guarantee-icon">&#128737;</div>
       <div class="guarantee-title">Garantia Hotmart de 7 Dias</div>
       <p class="guarantee-text">
@@ -1346,7 +1583,6 @@
       </p>
     </div>
 
-    <!-- CTA #4 -->
     <div class="cta-center">
       <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="cta-btn inverted">
         Escolher Meu Ingresso Agora
@@ -1359,61 +1595,39 @@
 <!-- 10. FAQ -->
 <section class="faq-section">
   <div class="container">
-    <p class="section-label">Dúvidas Frequentes</p>
-    <h2 class="section-title">Suas perguntas, respondidas.</h2>
+    <span class="section-num anim-left">07</span>
+    <p class="section-label anim-left">Dúvidas Frequentes</p>
+    <h2 class="section-title anim-up">Suas perguntas, respondidas.</h2>
 
     <div class="faq-list">
       <div class="faq-item">
         <input type="checkbox" id="faq1">
-        <label class="faq-q" for="faq1">
-          Serve para o meu nicho?
-          <span class="faq-icon-toggle">+</span>
-        </label>
+        <label class="faq-q" for="faq1">Serve para o meu nicho?<span class="faq-icon-toggle">+</span></label>
         <div class="faq-a"><p>Sim. Se você vende serviço ou conhecimento — em clínica, escritório ou infoproduto — o posicionamento é sua base de lucro. O método foi desenhado para profissionais de qualquer nicho que desejam se destacar no mercado.</p></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq2">
-        <label class="faq-q" for="faq2">
-          Vai ficar gravado?
-          <span class="faq-icon-toggle">+</span>
-        </label>
+        <label class="faq-q" for="faq2">Vai ficar gravado?<span class="faq-icon-toggle">+</span></label>
         <div class="faq-a"><p>Sim, o replay estará na Hotmart pelo período do seu ingresso (3 dias no Normal, 7 dias no VIP) para você revisar a construção da ferramenta no seu próprio ritmo.</p></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq3">
-        <label class="faq-q" for="faq3">
-          Preciso ter produto digital?
-          <span class="faq-icon-toggle">+</span>
-        </label>
+        <label class="faq-q" for="faq3">Preciso ter produto digital?<span class="faq-icon-toggle">+</span></label>
         <div class="faq-a"><p>Não. A imersão foca na sua notoriedade profissional, seja para o mundo físico ou para escalar para o digital. Você aplica o método independentemente do formato do seu negócio.</p></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq4">
-        <label class="faq-q" for="faq4">
-          Qual a diferença entre Normal e VIP?
-          <span class="faq-icon-toggle">+</span>
-        </label>
+        <label class="faq-q" for="faq4">Qual a diferença entre Normal e VIP?<span class="faq-icon-toggle">+</span></label>
         <div class="faq-a"><p>O VIP inclui o Hotseat — uma sessão exclusiva onde a Gisele analisa especificamente o seu negócio ao vivo, como uma consultoria individual em grupo, além de replay estendido por 7 dias.</p></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq5">
-        <label class="faq-q" for="faq5">
-          E se eu não puder assistir ao vivo?
-          <span class="faq-icon-toggle">+</span>
-        </label>
+        <label class="faq-q" for="faq5">E se eu não puder assistir ao vivo?<span class="faq-icon-toggle">+</span></label>
         <div class="faq-a"><p>Você terá acesso ao replay pelo período do seu ingresso (3 ou 7 dias). Porém, recomendamos fortemente a participação ao vivo — a construção do PUV é guiada passo a passo e a interação em tempo real potencializa seus resultados.</p></div>
       </div>
-
       <div class="faq-item">
         <input type="checkbox" id="faq6">
-        <label class="faq-q" for="faq6">
-          Tem garantia?
-          <span class="faq-icon-toggle">+</span>
-        </label>
+        <label class="faq-q" for="faq6">Tem garantia?<span class="faq-icon-toggle">+</span></label>
         <div class="faq-a"><p>Sim! A compra é protegida pela Garantia Hotmart de 7 dias. Se por qualquer motivo você não ficar satisfeito, basta solicitar o reembolso dentro do prazo. Sem burocracia, sem perguntas.</p></div>
       </div>
     </div>
