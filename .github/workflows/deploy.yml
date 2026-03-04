@@ -1,0 +1,90 @@
+# ============================================================
+# LP Imersão P — CI/CD Pipeline
+# Trigger: push na branch main
+#
+# Fluxo:
+#   1. Build da imagem Docker (nginx + HTML estático)
+#   2. Push para registry privado (registry.fabioviana.app.br)
+#   3. Trigger webhook do Portainer → pull nova imagem
+#
+# Secrets necessários no GitHub (Settings → Secrets → Actions):
+#   REGISTRY_USERNAME          — usuário do registry (ex: byfabioviana)
+#   REGISTRY_PASSWORD          — senha do registry privado
+#   REGISTRY_URL               — ex: registry.fabioviana.app.br
+#   PORTAINER_WEBHOOK_LP       — webhook URL do serviço lp-imersao-p no Portainer
+# ============================================================
+
+name: Deploy LP Imersão P
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lp-imersao-p.html'
+      - 'Dockerfile'
+      - 'nginx.conf'
+      - 'docker-compose.yml'
+      - '.github/workflows/deploy.yml'
+
+  workflow_dispatch:
+
+env:
+  IMAGE: ${{ secrets.REGISTRY_URL }}/${{ secrets.REGISTRY_USERNAME }}/lp-imersao-p
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE }}
+          tags: |
+            type=sha,prefix=git-,format=short
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Trigger Portainer redeploy
+        run: |
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "${{ secrets.PORTAINER_WEBHOOK_LP }}")
+          echo "Portainer webhook status: $HTTP_STATUS"
+          if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
+            echo "::error::Portainer webhook falhou com status $HTTP_STATUS"
+            exit 1
+          fi
+
+      - name: Deploy summary
+        run: |
+          echo "## Deploy LP Imersão P concluído" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Valor |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Imagem | \`${{ env.IMAGE }}:latest\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Commit | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| URL | https://imersao-p.fabioviana.app.br |" >> $GITHUB_STEP_SUMMARY
