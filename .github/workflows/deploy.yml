@@ -24,6 +24,7 @@ on:
       - 'lp-imersao-p.html'
       - 'Dockerfile'
       - 'nginx.conf'
+      - 'img/**'
       - 'docker-compose.yml'
       - '.github/workflows/deploy.yml'
 
