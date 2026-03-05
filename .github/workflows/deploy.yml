@@ -88,4 +88,4 @@ jobs:
           echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| Imagem | \`${{ env.IMAGE }}:latest\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Commit | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| URL | https://imersao-p.fabioviana.app.br |" >> $GITHUB_STEP_SUMMARY
+          echo "| URL | https://imersaop.com.br |" >> $GITHUB_STEP_SUMMARY
