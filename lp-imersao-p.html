@@ -9,8 +9,16 @@
 <meta property="og:image" content="https://imersaop.com.br/img/logoImersaoP.jpeg">
 <meta property="og:url" content="https://imersaop.com.br">
 <meta property="og:type" content="website">
+<meta name="description" content="Imersão ao vivo de 3 horas para construir seu Posicionamento Único de Valor. Método prático com Gisele Machado. 30/03 às 19h. A partir de R$97.">
+<meta name="robots" content="index, follow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Imersão Sobre Posicionamento - Método Você Mais Notável By Gisele Machado">
+<meta name="twitter:description" content="Três horas de imersão ao vivo e 100% prática para criar seu Posicionamento Único de Valor">
+<meta name="twitter:image" content="https://imersaop.com.br/img/logoImersaoP.jpeg">
+<link rel="canonical" href="https://imersaop.com.br">
 <link rel="icon" type="image/jpeg" href="img/logoImersaoP.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -24,7 +32,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 400; overflow-x: hidden; }
+  body { background: var(--black); color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 400; }
   body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.3; }
   .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
   .gold { color: var(--gold); }
@@ -58,7 +66,7 @@
   .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s infinite; }
 
   /* PAIN */
-  #pain { background: var(--white); color: var(--black); padding: 120px 24px; position: relative; overflow: hidden; }
+  #pain { background: var(--white); color: var(--black); padding: 120px 24px; position: relative; overflow: clip; }
   #pain::before { content: 'DOR'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: 'Barlow Condensed', sans-serif; font-size: 220px; font-weight: 900; color: rgba(0,0,0,0.04); pointer-events: none; letter-spacing: -10px; white-space: nowrap; }
   .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
   .section-label::after { content: ''; flex: 1; height: 1px; background: currentColor; max-width: 60px; }
@@ -172,7 +180,7 @@
   .faq-list { max-width: 740px; margin: 0 auto; }
   .faq-item { border-top: 1px solid rgba(10,10,10,0.1); overflow: hidden; }
   .faq-item:last-child { border-bottom: 1px solid rgba(10,10,10,0.1); }
-  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; cursor: pointer; user-select: none; gap: 20px; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; cursor: pointer; user-select: none; gap: 20px; background: none; border: none; width: 100%; text-align: left; color: inherit; font: inherit; min-height: 44px; }
   .faq-q-text { font-family: 'Barlow Condensed', sans-serif; font-size: 19px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
   .faq-icon { width: 28px; height: 28px; background: var(--gold); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 300; transition: transform 0.3s; color: var(--black); }
   .faq-item.open .faq-icon { transform: rotate(45deg); }
@@ -214,6 +222,11 @@
   .reveal-delay-3 { transition-delay: 0.3s; }
   .reveal-delay-4 { transition-delay: 0.4s; }
 
+  @media (max-width: 1024px) {
+    .mentor-layout { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+  }
+
   @media (max-width: 768px) {
     .mentor-layout { grid-template-columns: 1fr; }
     .mentor-years { right: -8px; }
@@ -225,8 +238,56 @@
     nav { padding: 14px 20px; }
     .pain-warning { flex-direction: column; }
     .hotseat-box { flex-direction: column; }
+    body { padding-bottom: 70px; }
+    .sticky-bar { flex-direction: column; text-align: center; gap: 8px; padding: 10px 16px; }
+    .sticky-bar-text { font-size: 13px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-headline { font-size: 36px; }
+    .cta-primary { padding: 16px 32px; font-size: 15px; }
+    .price-value { font-size: 56px; }
+    nav { padding: 10px 16px; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Imersão P - Posicionamento Único de Valor",
+  "startDate": "2026-03-30T19:00:00-03:00",
+  "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "VirtualLocation",
+    "url": "https://imersaop.com.br"
+  },
+  "organizer": {
+    "@type": "Person",
+    "name": "Gisele Machado",
+    "url": "https://www.instagram.com/giselecmachado/"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Ingresso Normal",
+      "price": "97.00",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/InStock",
+      "url": "https://pay.hotmart.com/I103193730V?checkoutMode=10"
+    },
+    {
+      "@type": "Offer",
+      "name": "Ingresso VIP",
+      "price": "147.00",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/InStock",
+      "url": "https://pay.hotmart.com/K103366980I"
+    }
+  ],
+  "description": "Três horas de imersão ao vivo para criar seu Posicionamento Único de Valor com Gisele Machado."
+}
+</script>
 </head>
 <body>
 
@@ -239,7 +300,10 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="img/logoImersaoP.jpeg" alt="Imersão P" style="height:48px;width:auto;">
+    <picture>
+      <source srcset="img/logoImersaoP.webp" type="image/webp">
+      <img src="img/logoImersaoP.jpeg" alt="Imersão P" width="48" height="48" fetchpriority="high" style="height:48px;width:auto;">
+    </picture>
   </div>
   <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="nav-cta" target="_blank">Inscreva-se →</a>
 </nav>
@@ -388,7 +452,10 @@
       <div class="testimonial reveal">
         <p class="testimonial-text">"Uma imersão maravilhosa. O conteúdo aplicado é de mentoria e de altíssimo valor. Valeu muito a pena participar!"</p>
         <div class="testimonial-author">
-          <img src="img/ftIvani.jpeg" alt="Ivani Restrepo" loading="lazy" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--gold);">
+          <picture>
+            <source srcset="img/ftIvani.webp" type="image/webp">
+            <img src="img/ftIvani.jpeg" alt="Ivani Restrepo" loading="lazy" width="54" height="54" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--gold);">
+          </picture>
           <div>
             <div class="testimonial-name">Ivani Restrepo</div>
             <div class="testimonial-role">Empresária e Mentora</div>
@@ -398,7 +465,10 @@
       <div class="testimonial reveal reveal-delay-1">
         <p class="testimonial-text">"Uma imersão que vai além da teoria. A união da técnica com a aplicação prática me ajudou a colher excelentes resultados."</p>
         <div class="testimonial-author">
-          <img src="img/ftJaqueline.jpeg" alt="Jaqueline Preis" loading="lazy" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--gold);">
+          <picture>
+            <source srcset="img/ftJaqueline.webp" type="image/webp">
+            <img src="img/ftJaqueline.jpeg" alt="Jaqueline Preis" loading="lazy" width="54" height="54" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--gold);">
+          </picture>
           <div>
             <div class="testimonial-name">Jaqueline Preis</div>
             <div class="testimonial-role">Empresária</div>
@@ -408,7 +478,10 @@
       <div class="testimonial reveal reveal-delay-2" style="grid-column: 1 / -1;">
         <p class="testimonial-text">"Participar da Imersão foi uma experiência que realmente abriu minha mente para novos horizontes. Aprendi muito sobre posicionamento, empreendedorismo e sobre como enxergar oportunidades de forma mais estratégica. Foi um momento de muito aprendizado, troca e inspiração. Saí da Imersão com uma visão muito mais clara do caminho que quero construir profissionalmente."</p>
         <div class="testimonial-author">
-          <img src="img/ftMariaLeticia.jpeg" alt="Maria Letícia Marcelino" loading="lazy" style="width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;border:2px solid var(--gold);">
+          <picture>
+            <source srcset="img/ftMariaLeticia.webp" type="image/webp">
+            <img src="img/ftMariaLeticia.jpeg" alt="Maria Letícia Marcelino" loading="lazy" width="54" height="54" style="width:54px;height:54px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;border:2px solid var(--gold);">
+          </picture>
           <div>
             <div class="testimonial-name">Maria Letícia Marcelino</div>
             <div class="testimonial-role">Enfermeira e Empresária</div>
@@ -425,7 +498,10 @@
     <div class="mentor-layout">
       <div class="mentor-photo-frame reveal">
         <div class="mentor-photo-bg">
-          <img src="img/ftGm.jpeg" alt="Gisele Machado" loading="lazy">
+          <picture>
+            <source srcset="img/ftGm.webp" type="image/webp">
+            <img src="img/ftGm.jpeg" alt="Gisele Machado" loading="lazy" width="1066" height="1600">
+          </picture>
           <div class="mentor-photo-label">Gisele Machado</div>
         </div>
         <div class="mentor-corner"></div>
@@ -516,38 +592,38 @@
     <h2 class="faq-title reveal">Dúvidas<br><span class="gold">Frequentes</span></h2>
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           <span class="faq-q-text">Serve para o meu nicho?</span>
           <span class="faq-icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Sim. Se você vende serviço ou conhecimento — em clínica, escritório ou infoproduto — o posicionamento é sua base de lucro. Médicos, advogados, psicólogos, arquitetos, designers, consultores e empreendedores digitais já aplicaram o método com sucesso.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           <span class="faq-q-text">Vai ficar gravado?</span>
           <span class="faq-icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Sim. O replay estará disponível na Hotmart pelo período do seu ingresso — 3 dias para o Normal e 7 dias para o VIP — para você revisar toda a construção da ferramenta no seu próprio ritmo.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           <span class="faq-q-text">Preciso ter produto digital?</span>
           <span class="faq-icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Não. A imersão foca na sua notoriedade profissional, seja para o mundo físico ou para escalar para o digital. O método funciona independente do canal de vendas.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           <span class="faq-q-text">Como funciona a entrega?</span>
           <span class="faq-icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Todo o conteúdo e materiais de apoio estarão disponíveis na plataforma Hotmart após a confirmação do pagamento. O link de acesso e o PDF da Ferramenta PUV serão enviados com antecedência.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
           <span class="faq-q-text">Quanto tempo leva para ver resultado?</span>
           <span class="faq-icon">+</span>
-        </div>
+        </button>
         <div class="faq-a">Você sai da imersão com seu Posicionamento Único de Valor construído. É uma ferramenta pronta para aplicar imediatamente — não é teoria para "estudar depois".</div>
       </div>
     </div>
@@ -604,8 +680,14 @@
   function toggleFaq(el) {
     const item = el.parentElement;
     const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      el.setAttribute('aria-expanded', 'true');
+    }
   }
 </script>
 </body>
