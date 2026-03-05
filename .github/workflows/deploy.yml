@@ -1,21 +1,16 @@
 # ============================================================
 # LP Imersão P — CI/CD Pipeline
-# Trigger: push na branch main
 #
 # Fluxo:
 #   1. Build da imagem Docker (nginx + HTML estático)
 #   2. Push para registry privado
 #   3. Atualiza stack no Portainer via API (docker-compose.yml)
-#   4. Redeploy do serviço com nova imagem + labels atualizadas
+#   4. Health check do serviço em produção
 #
-# Secrets necessários no GitHub (Settings → Secrets → Actions):
-#   REGISTRY_USERNAME          — usuário do registry
-#   REGISTRY_PASSWORD          — senha do registry privado
-#   REGISTRY_URL               — ex: registry.fabioviana.app.br
-#   PORTAINER_URL              — ex: https://portainer.fabioviana.app.br
-#   PORTAINER_API_KEY          — API key gerada no Portainer
-#   PORTAINER_STACK_ID         — ID numérico do stack no Portainer
-#   PORTAINER_ENDPOINT_ID      — ID numérico do endpoint (environment)
+# Secrets necessários (GitHub Settings → Secrets → Actions):
+#   REGISTRY_USERNAME, REGISTRY_PASSWORD, REGISTRY_URL
+#   PORTAINER_URL, PORTAINER_API_KEY
+#   PORTAINER_STACK_ID, PORTAINER_ENDPOINT_ID
 # ============================================================
 
 name: Deploy LP Imersão P
@@ -34,8 +29,14 @@ on:
 
   workflow_dispatch:
 
+  # Roda semanalmente para garantir renovação do certificado
+  # e que a imagem base está atualizada (security patches)
+  schedule:
+    - cron: '0 6 * * 1'
+
 env:
   IMAGE: ${{ secrets.REGISTRY_URL }}/${{ secrets.REGISTRY_USERNAME }}/lp-imersao-p
+  DOMAIN: imersaop.com.br
 
 jobs:
   build-and-deploy:
@@ -76,10 +77,8 @@ jobs:
 
       - name: Update Portainer stack
         run: |
-          # Read docker-compose.yml content
           COMPOSE_CONTENT=$(cat docker-compose.yml)
 
-          # Update stack via Portainer API
           HTTP_STATUS=$(curl -s -o /tmp/portainer-response.json -w "%{http_code}" \
             -X PUT "${{ secrets.PORTAINER_URL }}/api/stacks/${{ secrets.PORTAINER_STACK_ID }}?endpointId=${{ secrets.PORTAINER_ENDPOINT_ID }}" \
             -H "X-API-Key: ${{ secrets.PORTAINER_API_KEY }}" \
@@ -93,20 +92,82 @@ jobs:
           echo "Portainer API status: $HTTP_STATUS"
 
           if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
-            echo "::error::Portainer stack update falhou com status $HTTP_STATUS"
+            echo "::error::Portainer stack update failed (HTTP $HTTP_STATUS)"
             cat /tmp/portainer-response.json
             exit 1
           fi
 
-          echo "Stack atualizado com sucesso"
+          echo "Stack updated successfully"
+
+      - name: Health check
+        run: |
+          echo "Waiting for service to stabilize..."
+          sleep 10
+
+          # Test HTTP response (via server IP, bypassing DNS)
+          SERVER_IP=$(dig +short ${{ env.DOMAIN }} @1.1.1.1 | head -1)
+
+          if [ -z "$SERVER_IP" ]; then
+            echo "::warning::DNS not yet propagated for ${{ env.DOMAIN }}, skipping health check"
+            exit 0
+          fi
+
+          HTTP_STATUS=$(curl -sk -o /dev/null -w "%{http_code}" \
+            --max-time 15 \
+            --resolve "${{ env.DOMAIN }}:443:${SERVER_IP}" \
+            "https://${{ env.DOMAIN }}")
+
+          echo "Health check status: $HTTP_STATUS"
+
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "::warning::Health check returned HTTP $HTTP_STATUS"
+          else
+            echo "Site is live and responding 200 OK"
+          fi
+
+      - name: Check TLS certificate
+        run: |
+          SERVER_IP=$(dig +short ${{ env.DOMAIN }} @1.1.1.1 | head -1)
+
+          if [ -z "$SERVER_IP" ]; then
+            echo "::warning::DNS not propagated, skipping TLS check"
+            exit 0
+          fi
+
+          CERT_EXPIRY=$(echo | openssl s_client \
+            -servername ${{ env.DOMAIN }} \
+            -connect "${SERVER_IP}:443" 2>/dev/null | \
+            openssl x509 -noout -enddate 2>/dev/null | \
+            cut -d= -f2)
+
+          if [ -z "$CERT_EXPIRY" ]; then
+            echo "::warning::Could not retrieve TLS certificate"
+            exit 0
+          fi
+
+          EXPIRY_EPOCH=$(date -d "$CERT_EXPIRY" +%s 2>/dev/null)
+          NOW_EPOCH=$(date +%s)
+          DAYS_LEFT=$(( (EXPIRY_EPOCH - NOW_EPOCH) / 86400 ))
+
+          echo "Certificate expires: $CERT_EXPIRY ($DAYS_LEFT days remaining)"
+
+          if [ "$DAYS_LEFT" -lt 7 ]; then
+            echo "::error::TLS certificate expires in $DAYS_LEFT days! Renewal needed."
+            exit 1
+          elif [ "$DAYS_LEFT" -lt 21 ]; then
+            echo "::warning::TLS certificate expires in $DAYS_LEFT days. Traefik should auto-renew."
+          else
+            echo "TLS certificate is healthy ($DAYS_LEFT days remaining)"
+          fi
 
       - name: Deploy summary
+        if: always()
         run: |
-          echo "## Deploy LP Imersão P concluído" >> $GITHUB_STEP_SUMMARY
+          echo "## Deploy LP Imersão P" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Item | Valor |" >> $GITHUB_STEP_SUMMARY
           echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| Imagem | \`${{ env.IMAGE }}:latest\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Commit | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| Domínio | https://imersaop.com.br |" >> $GITHUB_STEP_SUMMARY
-          echo "| Stack | Atualizado via Portainer API |" >> $GITHUB_STEP_SUMMARY
+          echo "| Domínio | https://${{ env.DOMAIN }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Trigger | \`${{ github.event_name }}\` |" >> $GITHUB_STEP_SUMMARY
