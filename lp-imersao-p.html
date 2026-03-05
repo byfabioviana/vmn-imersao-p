@@ -10,6 +10,10 @@
 <meta property="og:description" content="Workshop ao vivo de 3h com Gisele Machado. Construa seu PUV e transforme expertise em autoridade percebida. A partir de R$97.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://imersao-p.fabioviana.app.br">
+<meta property="og:image" content="https://imersao-p.fabioviana.app.br/img/logoImersaoP.jpeg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<link rel="icon" type="image/jpeg" href="img/logoImersaoP.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
@@ -1352,6 +1356,65 @@
     line-height: 1.6;
   }
 
+  /* ─── STICKY NAV ─── */
+  .sticky-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: rgba(10,10,10,0.92);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(171,147,24,0.2);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  .sticky-nav .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .sticky-nav .nav-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  .sticky-nav .nav-brand-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    color: #ab9318;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .sticky-nav .nav-cta {
+    background: #ab9318;
+    color: #0a0a0a;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .sticky-nav .nav-cta:hover {
+    background: #c9ae2a;
+    transform: scale(1.04);
+  }
+  @media(max-width: 479px) {
+    .sticky-nav .nav-brand-text { display: none; }
+    .sticky-nav .nav-cta { font-size: 0.75rem; padding: 8px 16px; }
+  }
+
   /* ─── MOBILE STICKY CTA BAR ─── */
   .sticky-cta-bar { display: none; }
   @media(max-width: 639px) {
@@ -1420,6 +1483,15 @@
 </style>
 </head>
 <body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+  <a href="#" class="nav-brand">
+    <img src="img/logoImersaoP.jpeg" alt="Imersao P" class="nav-logo" width="32" height="32">
+    <span class="nav-brand-text">Imersao P</span>
+  </a>
+  <a href="#pricing" class="nav-cta">Garantir Vaga</a>
+</nav>
 
 <!-- 1. URGENCY BANNER -->
 <div class="urgency-banner">
@@ -1850,5 +1922,21 @@
   <a href="#pricing">Garantir Minha Vaga</a>
 </div>
 
+<script>
+(function() {
+  var nav = document.getElementById('stickyNav');
+  var lastY = 0;
+  var threshold = 300;
+  window.addEventListener('scroll', function() {
+    var y = window.scrollY;
+    if (y > threshold && y < lastY) {
+      nav.classList.add('visible');
+    } else {
+      nav.classList.remove('visible');
+    }
+    lastY = y;
+  });
+})();
+</script>
 </body>
 </html>
