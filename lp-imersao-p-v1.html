@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imersão P — Gisele Machado | Posicionamento Único de Valor</title>
+<meta name="description" content="Construa ao vivo seu Posicionamento Único de Valor (PUV) com Gisele Machado. 22+ anos de experiência condensados em 3h de imersão prática. 30 de março, 19h.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Imersão P — Pare de perder espaço para quem sabe menos que você">
+<meta property="og:description" content="Workshop ao vivo de 3h com Gisele Machado. Construa seu PUV e transforme expertise em autoridade percebida. A partir de R$97.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://imersao-p.fabioviana.app.br">
+<meta property="og:image" content="https://imersao-p.fabioviana.app.br/img/logoImersaoP.jpeg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<link rel="icon" type="image/jpeg" href="img/logoImersaoP.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@700;800;900&display=swap');
+
+  /* ═══════════════════════════════════════
+     RESET & BASE
+     ═══════════════════════════════════════ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', Arial, Helvetica, sans-serif;
+    background: #0a0a0a;
+    color: #f8f5ef;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Noise texture overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.018;
+    pointer-events: none;
+    z-index: 9998;
+    background-image: repeating-conic-gradient(#f8f5ef 0% 25%, transparent 0% 50%);
+    background-size: 3px 3px;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(171,147,24,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(171,147,24,0); }
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.6); }
+  }
+  @keyframes cta-shine {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+  @keyframes aurora-breathe {
+    0%, 100% { opacity: 0.12; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+    33% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.1) rotate(2deg); }
+    66% { opacity: 0.08; transform: translate(-50%, -50%) scale(0.95) rotate(-1deg); }
+  }
+  @keyframes divider-glow {
+    0%, 100% { width: 60px; opacity: 0.6; }
+    50% { width: 120px; opacity: 1; }
+  }
+  @keyframes gradient-flow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes word-pop {
+    from { opacity: 0; transform: translateY(18px) rotateX(40deg); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0) rotateX(0deg); filter: blur(0); }
+  }
+  @keyframes morph-blob {
+    0% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+    25% { border-radius: 60% 40% 30% 70% / 40% 60% 40% 60%; }
+    50% { border-radius: 30% 70% 50% 50% / 50% 40% 60% 50%; transform: translate(-50%, -50%) rotate(180deg) scale(1.05); }
+    75% { border-radius: 50% 50% 40% 60% / 70% 30% 70% 30%; }
+    100% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+  }
+  @keyframes parallax-drift {
+    from { transform: translateY(60px) translateX(-10px); }
+    to { transform: translateY(-60px) translateX(10px); }
+  }
+  @keyframes clip-reveal {
+    from { clip-path: inset(0 100% 0 0); opacity: 0.3; }
+    to { clip-path: inset(0 0% 0 0); opacity: 1; }
+  }
+  @keyframes scroll-ken-burns {
+    from { transform: scale(1.15) translate(3%, 3%); }
+    to { transform: scale(1) translate(0%, 0%); }
+  }
+  @keyframes counter-scroll {
+    from { transform: translateY(30px); }
+    to { transform: translateY(-30px); }
+  }
+  @keyframes border-draw-x {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  @keyframes border-draw-y {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+  @keyframes fade-slide-up-full {
+    0% { opacity: 0; transform: translateY(40px); }
+    15% { opacity: 1; transform: translateY(0); }
+    85% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+  }
+  @keyframes slide-from-right {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ─── SCROLL-DRIVEN ANIMATIONS ─── */
+  @keyframes fade-slide-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-scale-in {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes slide-from-left {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .anim-up {
+    animation: fade-slide-up ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  .anim-scale {
+    animation: fade-scale-in ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  .anim-left {
+    animation: slide-from-left ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  .anim-clip-reveal {
+    animation: clip-reveal ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+  .anim-up-exit {
+    animation: fade-slide-up-full ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Parallax drift on section numerals */
+  .section-num {
+    animation: parallax-drift linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Word stagger in hero headline */
+  .hero-headline .word {
+    display: inline-block;
+    opacity: 0;
+    animation: word-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  .hero-headline .word:nth-child(1) { animation-delay: 0.1s; }
+  .hero-headline .word:nth-child(2) { animation-delay: 0.18s; }
+  .hero-headline .word:nth-child(3) { animation-delay: 0.26s; }
+  .hero-headline .word:nth-child(4) { animation-delay: 0.32s; }
+  .hero-headline .word:nth-child(5) { animation-delay: 0.38s; }
+  .hero-headline .word:nth-child(6) { animation-delay: 0.44s; }
+  .hero-headline .word:nth-child(7) { animation-delay: 0.5s; }
+  .hero-headline .word:nth-child(8) { animation-delay: 0.56s; }
+  .hero-headline .word:nth-child(9) { animation-delay: 0.62s; }
+  .hero-headline .word:nth-child(10) { animation-delay: 0.68s; }
+  .hero-headline em .word:nth-child(1) { animation-delay: 0.76s; }
+  .hero-headline em .word:nth-child(2) { animation-delay: 0.84s; }
+  .hero-headline em .word:nth-child(3) { animation-delay: 0.92s; }
+  .hero-headline em .word:nth-child(4) { animation-delay: 1.0s; }
+
+  /* Border draw on pain cards */
+  .pain-card .border-line { position: absolute; background: #ab9318; }
+  .pain-card .border-line--top {
+    top: 0; left: 0; right: 0; height: 3px;
+    transform-origin: left;
+    animation: border-draw-x 0.6s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 25%;
+  }
+  .pain-card .border-line--right {
+    top: 0; right: 0; bottom: 0; width: 1px;
+    transform-origin: top;
+    background: rgba(171,147,24,0.2);
+    animation: border-draw-y 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 15% entry 35%;
+  }
+  .pain-card .border-line--bottom {
+    bottom: 0; left: 0; right: 0; height: 1px;
+    transform-origin: right;
+    background: rgba(171,147,24,0.2);
+    animation: border-draw-x 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 20% entry 40%;
+  }
+  .pain-card .border-line--left {
+    top: 0; left: 0; bottom: 0; width: 1px;
+    transform-origin: bottom;
+    background: rgba(171,147,24,0.2);
+    animation: border-draw-y 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 30%;
+  }
+
+  /* Staggered table row reveal */
+  .value-table tbody tr {
+    animation: slide-from-right 0.5s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+  .value-table tbody tr:nth-child(2) { animation-delay: 100ms; }
+  .value-table tbody tr:nth-child(3) { animation-delay: 200ms; }
+  .value-table tbody tr:nth-child(4) { animation-delay: 300ms; }
+
+  /* Counter-scroll on proof bar */
+  .proof-bar {
+    animation: counter-scroll linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+
+  /* Scroll snap for desktop */
+  @media (min-width: 768px) {
+    html { scroll-snap-type: y proximity; }
+    .hero, .pain-section, .for-whom-section, .testimonials-section,
+    .solution-section, .mentor-section, .pricing-section, .faq-section,
+    .final-cta-section { scroll-snap-align: start; }
+  }
+
+  /* Pricing cards section-wide hover */
+  .pricing-grid:has(.pricing-card:hover) { filter: brightness(1.03); }
+  .pricing-card:hover ~ .pricing-card { opacity: 0.7; transform: scale(0.97); transition: opacity 0.4s, transform 0.4s; }
+  .pricing-card:not(.featured):hover ~ .pricing-card.featured { opacity: 0.7; transform: scale(1); }
+
+  /* Stagger delays for grids */
+  .pain-card:nth-child(2) { animation-delay: 80ms; }
+  .pain-card:nth-child(3) { animation-delay: 160ms; }
+  .pain-card:nth-child(4) { animation-delay: 240ms; }
+  .profile-card:nth-child(2) { animation-delay: 100ms; }
+  .profile-card:nth-child(3) { animation-delay: 200ms; }
+  .pillar-card:nth-child(2) { animation-delay: 80ms; }
+  .pillar-card:nth-child(3) { animation-delay: 160ms; }
+  .pillar-card:nth-child(4) { animation-delay: 240ms; }
+
+  /* ─── FOCUS STATES ─── */
+  a:focus-visible, button:focus-visible, label:focus-visible, input:focus-visible {
+    outline: 2px solid #c9ae2a;
+    outline-offset: 3px;
+  }
+
+  /* ─── SECTION NUMERALS ─── */
+  .section-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 900;
+    color: rgba(171,147,24,0.04);
+    line-height: 0.8;
+    margin-bottom: -48px;
+    display: block;
+    letter-spacing: -4px;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .pain-section .section-num,
+  .testimonials-section .section-num,
+  .mentor-section .section-num { color: rgba(138,117,16,0.06); }
+  .solution-section .section-num { color: rgba(10,10,10,0.06); }
+
+  /* ─── HIGHLIGHT WORD (animated underline) ─── */
+  .highlight-word {
+    color: #8a7510;
+    font-style: italic;
+    position: relative;
+    display: inline;
+  }
+  .highlight-word::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8a7510, #c9ae2a);
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .highlight-word:hover::after { width: 100%; }
+  .anim-up .highlight-word::after { width: 100%; }
+
+  /* Gold variant for dark backgrounds */
+  .highlight-gold { color: #ab9318; }
+  .highlight-gold::after { background: linear-gradient(90deg, #ab9318, #f0d850); }
+
+  /* ─── URGENCY BANNER ─── */
+  .urgency-banner {
+    background: linear-gradient(90deg, #8a7510, #ab9318, #c9ae2a, #f0d850, #c9ae2a, #ab9318, #8a7510, #ab9318, #c9ae2a, #f0d850, #c9ae2a, #ab9318, #8a7510);
+    background-size: 200% 100%;
+    animation: gradient-flow 8s linear infinite;
+    color: #0a0a0a;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .urgency-banner .banner-sep { opacity: 0.4; margin: 0 8px; }
+  .banner-date {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: #0a0a0a;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px 48px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  /* Multi-gradient mesh (Stripe-inspired) */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(171,147,24,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 80% at 80% 30%, rgba(184,115,58,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 50% 80%, rgba(138,117,16,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  /* Aurora breathe glow */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(171,147,24,0.3) 0%, rgba(138,117,16,0.1) 40%, transparent 70%);
+    animation: aurora-breathe 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(60px);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(171,147,24,0.5);
+    padding: 8px 24px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ab9318;
+    margin-bottom: 32px;
+    background: rgba(171,147,24,0.06);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: #ab9318;
+    border-radius: 50%;
+    display: inline-block;
+    animation: live-pulse 2s ease-in-out infinite;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    text-align: center;
+    max-width: 900px;
+    color: #f5e6c8;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.5px;
+  }
+  .hero-headline em {
+    font-style: italic;
+    display: block;
+    background: linear-gradient(110deg, #8a7510 0%, #c9ae2a 40%, #f0d850 50%, #c9ae2a 60%, #8a7510 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 5s linear infinite;
+  }
+
+  .hero-sub {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    line-height: 1.75;
+    text-align: center;
+    max-width: 680px;
+    color: rgba(248,245,239,0.82);
+    margin: 24px auto 0;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── CTA BUTTONS ─── */
+  .cta-btn {
+    display: inline-block;
+    background: #ab9318;
+    color: #0a0a0a;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    text-decoration: none;
+    border: 2px solid #ab9318;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: none;
+  }
+  .cta-btn:hover::before {
+    animation: cta-shine 0.6s ease-out forwards;
+  }
+  .cta-btn:hover {
+    background: #c9ae2a;
+    border-color: #c9ae2a;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(171,147,24,0.3), 0 16px 40px rgba(171,147,24,0.2);
+    letter-spacing: 3px;
+  }
+
+  .cta-btn.pulse {
+    background: transparent;
+    color: #c9ae2a;
+    border: 2px solid #ab9318;
+    animation: pulse-border 2.5s ease-in-out infinite;
+  }
+  .cta-btn.pulse:hover {
+    background: #ab9318;
+    color: #0a0a0a;
+    animation: none;
+  }
+
+  .cta-btn.inverted {
+    background: #0a0a0a;
+    color: #ab9318;
+    border-color: #0a0a0a;
+  }
+  .cta-btn.inverted:hover {
+    background: #111;
+    color: #c9ae2a;
+    border-color: #111;
+  }
+
+  .cta-btn.dramatic {
+    font-size: 1.25rem;
+    padding: 24px 56px;
+    background: linear-gradient(135deg, #c9ae2a 0%, #ab9318 100%);
+    border-color: #c9ae2a;
+    box-shadow: 0 0 40px rgba(171,147,24,0.25);
+  }
+  .cta-btn.dramatic:hover {
+    background: linear-gradient(135deg, #f0d850 0%, #c9ae2a 100%);
+    box-shadow: 0 0 60px rgba(171,147,24,0.5);
+    transform: translateY(-4px);
+  }
+
+  .cta-center { text-align: center; margin-top: 48px; }
+  .cta-note { font-size: 0.78rem; color: rgba(248,245,239,0.4); margin-top: 12px; }
+
+  .cta-block {
+    background: #0a0a0a;
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  /* ─── SOCIAL PROOF BAR ─── */
+  .proof-bar {
+    background: rgba(171,147,24,0.08);
+    border-top: 1px solid rgba(171,147,24,0.2);
+    border-bottom: 1px solid rgba(171,147,24,0.2);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .proof-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ab9318;
+    letter-spacing: 1px;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s;
+  }
+  .proof-item:hover {
+    transform: translateY(-3px);
+    color: #c9ae2a;
+  }
+  .proof-item svg { width: 18px; height: 18px; fill: #ab9318; transition: fill 0.2s; }
+  .proof-item:hover svg { fill: #c9ae2a; }
+
+  /* ─── SECTION WRAPPER ─── */
+  section { padding: 96px 24px; }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ab9318;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: #ab9318;
+  }
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  /* Separador decorativo dourado — breathing */
+  .gold-divider {
+    display: block;
+    width: 60px;
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(90deg, transparent, #c9ae2a, transparent);
+    animation: divider-glow 4s ease-in-out infinite;
+    border: none;
+  }
+
+  /* ─── PAIN SECTION ─── */
+  .pain-section {
+    background: #f8f5ef;
+    color: #0a0a0a;
+    position: relative;
+  }
+  .pain-section .section-title { color: #0a0a0a; }
+  .pain-section .section-label { color: #8a7510; }
+  .pain-section .section-label::after { background: #8a7510; }
+
+  .pain-lead {
+    font-size: 1.1rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #0a0a0a;
+    border-left: 4px solid #ab9318;
+    padding: 16px 24px;
+    background: rgba(171,147,24,0.06);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media(min-width: 640px) { .pain-grid { grid-template-columns: 1fr 1fr; } }
+
+  .pain-card {
+    background: #0a0a0a;
+    color: #f8f5ef;
+    padding: 32px 24px;
+    position: relative;
+    border-top: none;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  }
+  .pain-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 2px 4px rgba(0,0,0,0.1),
+      0 8px 16px rgba(0,0,0,0.15),
+      0 24px 48px rgba(0,0,0,0.2);
+  }
+  .pain-icon { font-size: 2rem; margin-bottom: 16px; }
+  .pain-title {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ab9318;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .pain-desc { font-size: 0.92rem; line-height: 1.65; color: rgba(248,245,239,0.7); }
+
+  /* Pain warning — accent cobre */
+  .pain-warning {
+    margin-top: 48px;
+    background: #0a0a0a;
+    border: 1px solid rgba(184,115,58,0.3);
+    border-left: 4px solid #b8733a;
+    padding: 24px 32px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .warn-icon { font-size: 2rem; flex-shrink: 0; }
+  .warn-text { font-size: 0.95rem; line-height: 1.6; color: rgba(248,245,239,0.7); }
+  .warn-text strong { color: #b8733a; }
+
+  .pain-section .cta-center .cta-btn.pulse {
+    background: #0a0a0a;
+    color: #c9ae2a;
+    border-color: #0a0a0a;
+  }
+  .pain-section .cta-center .cta-btn.pulse:hover {
+    background: #111;
+    color: #f8f5ef;
+  }
+  .pain-section .cta-center .cta-note { color: rgba(0,0,0,0.4); }
+
+  /* ─── PARA QUEM ─── */
+  .for-whom-section {
+    background: linear-gradient(180deg, #0a0a0a 0%, #0d0b05 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .for-whom-section::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(171,147,24,0.08) 0%, transparent 70%);
+    animation: morph-blob 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(40px);
+  }
+  .for-whom-section .container { position: relative; z-index: 1; }
+  /* Dot pattern decorativo */
+  .for-whom-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(rgba(171,147,24,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    position: relative;
+  }
+  @media(min-width: 700px) { .profiles-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  /* Profile card with gradient border */
+  .profile-card {
+    padding: 32px 24px;
+    position: relative;
+    background: #0a0a0a;
+    border: none;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  }
+  .profile-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(171,147,24,0.4) 0%, rgba(171,147,24,0.08) 50%, rgba(171,147,24,0.3) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: background 0.3s;
+  }
+  .profile-card:hover::before {
+    background: linear-gradient(135deg, rgba(201,174,42,0.8) 0%, rgba(171,147,24,0.3) 50%, rgba(201,174,42,0.6) 100%);
+  }
+  .profile-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 2px 4px rgba(171,147,24,0.05),
+      0 12px 24px rgba(0,0,0,0.15),
+      0 32px 64px rgba(0,0,0,0.1);
+  }
+  .profile-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .profile-title {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #ab9318;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .profile-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(248,245,239,0.7); }
+
+  @media(max-width: 699px) {
+    .profile-card + .profile-card { border-top: 1px solid rgba(171,147,24,0.15); }
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials-section { background: #f8f5ef; color: #0a0a0a; }
+  .testimonials-section .section-title { color: #0a0a0a; }
+  .testimonials-section .section-label { color: #8a7510; }
+  .testimonials-section .section-label::after { background: #8a7510; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media(min-width: 640px) { .testimonials-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* Glassmorphism testimonial cards */
+  .testimonial-card {
+    background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(20,18,8,0.9) 100%);
+    color: #f8f5ef;
+    padding: 32px 24px;
+    border-bottom: 3px solid #ab9318;
+    border-left: 1px solid rgba(171,147,24,0.08);
+    border-right: 1px solid rgba(171,147,24,0.04);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.1),
+      0 16px 32px rgba(0,0,0,0.2),
+      0 32px 64px rgba(0,0,0,0.15);
+  }
+  .result-badge {
+    display: inline-block;
+    background: rgba(171,147,24,0.15);
+    border: 1px solid rgba(171,147,24,0.3);
+    color: #c9ae2a;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 16px;
+  }
+  .quote-mark {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 4rem;
+    color: #ab9318;
+    line-height: 0.6;
+    opacity: 0.3;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .testimonial-text { font-size: 1rem; line-height: 1.7; font-style: italic; margin-bottom: 24px; color: rgba(248,245,239,0.7); }
+  .testimonial-author { font-weight: 700; font-size: 0.88rem; color: #ab9318; text-transform: uppercase; letter-spacing: 1px; }
+  .testimonial-role { font-size: 0.78rem; color: rgba(248,245,239,0.4); margin-top: 4px; }
+  .stars { color: #ab9318; font-size: 1rem; margin-bottom: 8px; }
+
+  /* ─── SOLUTION ─── */
+  .solution-section { background: #ab9318; color: #0a0a0a; }
+  .solution-section .section-label { color: #0a0a0a; opacity: 0.7; }
+  .solution-section .section-label::after { background: #0a0a0a; opacity: 0.4; }
+  .solution-section .section-title { color: #0a0a0a; }
+  .solution-intro { font-size: 1.05rem; line-height: 1.7; margin-bottom: 48px; max-width: 700px; }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media(min-width: 640px) { .pillars-grid { grid-template-columns: 1fr 1fr; } }
+
+  .pillar-card {
+    background: #0a0a0a;
+    color: #f8f5ef;
+    padding: 32px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+  }
+  .pillar-card:hover {
+    transform: translateY(-6px) rotateX(2deg);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.15),
+      0 16px 32px rgba(0,0,0,0.25),
+      0 32px 64px rgba(0,0,0,0.2);
+  }
+  .pillar-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -10px; right: 16px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(171,147,24,0.12);
+    line-height: 1;
+  }
+  /* Gold line that appears on hover */
+  .pillar-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #c9ae2a, transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pillar-card:hover::after {
+    transform: scaleX(1);
+  }
+  .pillar-tag {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ab9318;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  /* Progress bar in pillar tag */
+  .pillar-tag::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: rgba(171,147,24,0.15);
+  }
+  .pillar-card[data-num="1"] .pillar-tag::after {
+    background: linear-gradient(90deg, #ab9318 25%, rgba(171,147,24,0.15) 25%);
+  }
+  .pillar-card[data-num="2"] .pillar-tag::after {
+    background: linear-gradient(90deg, #ab9318 50%, rgba(171,147,24,0.15) 50%);
+  }
+  .pillar-card[data-num="3"] .pillar-tag::after {
+    background: linear-gradient(90deg, #ab9318 75%, rgba(171,147,24,0.15) 75%);
+  }
+  .pillar-card[data-num="4"] .pillar-tag::after {
+    background: #ab9318;
+  }
+  .pillar-title {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #f8f5ef;
+    margin-bottom: 8px;
+  }
+  .pillar-desc { font-size: 0.88rem; line-height: 1.6; color: rgba(248,245,239,0.7); }
+
+  .solution-section .cta-btn.inverted { background: #0a0a0a; color: #ab9318; border-color: #0a0a0a; }
+  .solution-section .cta-btn.inverted:hover { background: #111; color: #c9ae2a; }
+
+  /* ─── MENTOR ─── */
+  .mentor-section { background: #f8f5ef; color: #0a0a0a; }
+  .mentor-section .section-title { color: #0a0a0a; }
+  .mentor-section .section-label { color: #8a7510; }
+  .mentor-section .section-label::after { background: #8a7510; }
+
+  .mentor-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  @media(min-width: 700px) { .mentor-inner { grid-template-columns: 1fr 2fr; align-items: start; } }
+
+  .mentor-photo {
+    width: 100%;
+    padding-top: 133%;
+    position: relative;
+    background: linear-gradient(135deg, #1a1a12 0%, #0a0a08 100%);
+    border: 2px solid #ab9318;
+    overflow: hidden;
+  }
+  .mentor-photo { overflow: hidden; }
+  .mentor-photo img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    animation: scroll-ken-burns linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .mentor-photo-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, #0a0a0a);
+    color: #ab9318;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+    padding: 48px 16px 24px;
+    line-height: 1.2;
+  }
+
+  .mentor-stats { display: flex; gap: 32px; flex-wrap: wrap; margin-bottom: 24px; }
+  .stat-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #8a7510;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #0a0a0a;
+    opacity: 0.7;
+    font-weight: 600;
+  }
+  .mentor-bio { font-size: 0.95rem; line-height: 1.75; color: rgba(0,0,0,0.7); }
+  .mentor-bio strong { color: #0a0a0a; }
+  .mentor-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+
+  /* Tags with fill effect */
+  .tag {
+    background: transparent;
+    color: #ab9318;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 8px 16px;
+    border: 1px solid rgba(171,147,24,0.3);
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s, border-color 0.3s;
+    z-index: 0;
+  }
+  .tag::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 0;
+    background: #0a0a0a;
+    transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+  }
+  .tag:hover {
+    color: #c9ae2a;
+    border-color: #0a0a0a;
+  }
+  .tag:hover::before {
+    height: 100%;
+  }
+
+  /* ─── PRICING MEGA-SECTION ─── */
+  .pricing-section {
+    background: linear-gradient(180deg, #ab9318 0%, #9a8416 50%, #ab9318 100%);
+    color: #0a0a0a;
+  }
+  .pricing-section .section-label { color: #0a0a0a; opacity: 0.7; }
+  .pricing-section .section-label::after { background: #0a0a0a; opacity: 0.4; }
+  .pricing-section .section-title { color: #0a0a0a; }
+
+  .value-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 48px;
+    border-collapse: collapse;
+    background: rgba(0,0,0,0.08);
+  }
+  .value-table th,
+  .value-table td {
+    padding: 16px 24px;
+    text-align: left;
+    font-size: 0.92rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  .value-table th {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+    font-size: 0.72rem;
+  }
+  .value-table td:first-child { color: rgba(0,0,0,0.7); }
+  .value-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: rgba(0,0,0,0.4);
+    text-decoration: line-through;
+  }
+  .value-table .highlight-row td {
+    background: #0a0a0a;
+    color: #c9ae2a;
+    font-weight: 900;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-bottom: none;
+  }
+  .value-table .highlight-row td:last-child {
+    color: #c9ae2a;
+    text-decoration: none;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.3rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  @media(min-width: 640px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* Pricing cards with glass gradient */
+  .pricing-card {
+    background: linear-gradient(145deg, rgba(10,10,10,1) 0%, rgba(18,16,8,1) 50%, rgba(10,10,10,1) 100%);
+    color: #f8f5ef;
+    padding: 32px 24px;
+    position: relative;
+    border-top: 4px solid transparent;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+  }
+  /* Glass highlight */
+  .pricing-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(248,245,239,0.03) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .pricing-card.featured {
+    border-top-color: #c9ae2a;
+    transform: scale(1.03);
+    box-shadow:
+      0 16px 48px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(201,174,42,0.15),
+      inset 0 0 32px rgba(171,147,24,0.03);
+  }
+  .pricing-card.featured:hover {
+    transform: scale(1.05);
+    box-shadow:
+      0 20px 56px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(201,174,42,0.2);
+  }
+  .pricing-card:not(.featured):hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 4px 8px rgba(0,0,0,0.1),
+      0 16px 32px rgba(0,0,0,0.2),
+      0 32px 64px rgba(0,0,0,0.15);
+  }
+  .pricing-card.featured::before {
+    content: '\2726 RECOMENDADO';
+    position: absolute;
+    top: -1px; right: 24px;
+    background: #c9ae2a;
+    color: #0a0a0a;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    z-index: 1;
+  }
+
+  .price-label { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(248,245,239,0.4); font-weight: 600; margin-bottom: 8px; }
+  .price-type { font-family: 'Barlow Condensed', Arial, sans-serif; font-size: 1.8rem; font-weight: 900; text-transform: uppercase; color: #f8f5ef; margin-bottom: 4px; }
+  .price-old { font-size: 1.1rem; color: rgba(248,245,239,0.4); text-decoration: line-through; margin-bottom: 2px; }
+  .price-amount { font-family: 'Playfair Display', Georgia, serif; font-size: 3.2rem; font-weight: 900; color: #ab9318; line-height: 1; margin-bottom: 4px; }
+  .price-period { font-size: 0.78rem; color: rgba(248,245,239,0.4); margin-bottom: 8px; }
+  .savings-badge {
+    display: inline-block;
+    background: rgba(171,147,24,0.15);
+    border: 1px solid rgba(171,147,24,0.3);
+    color: #c9ae2a;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+  }
+  .price-divider { height: 1px; background: rgba(171,147,24,0.2); margin-bottom: 24px; }
+
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .price-features li {
+    font-size: 0.88rem;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    line-height: 1.4;
+    color: rgba(248,245,239,0.7);
+  }
+  .price-features li::before { content: '\2713'; color: #ab9318; font-weight: 800; flex-shrink: 0; }
+
+  .price-cta {
+    display: block;
+    background: #ab9318;
+    color: #0a0a0a;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 18px;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: 2px solid #ab9318;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .pricing-card:not(.featured) .price-cta { background: transparent; color: #ab9318; }
+  .price-cta:hover { background: #c9ae2a; color: #0a0a0a; border-color: #c9ae2a; }
+  .pricing-card.featured .price-cta { animation: pulse-border 2.5s ease-in-out infinite; }
+  .pricing-card.featured .price-cta:hover { animation: none; }
+  .price-urgency {
+    display: block;
+    text-align: center;
+    font-size: 0.72rem;
+    color: rgba(248,245,239,0.4);
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .hotseat-box {
+    max-width: 700px;
+    margin: 48px auto 0;
+    background: rgba(0,0,0,0.15);
+    border-left: 4px solid #0a0a0a;
+    padding: 24px;
+  }
+  .hotseat-title {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #0a0a0a;
+    margin-bottom: 8px;
+  }
+  .hotseat-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(0,0,0,0.7); }
+
+  /* Garantia with decorative corners */
+  .guarantee-box {
+    max-width: 700px;
+    margin: 48px auto 0;
+    background: radial-gradient(ellipse at center, rgba(15,13,5,1) 0%, rgba(10,10,10,1) 100%);
+    border: 2px solid rgba(171,147,24,0.5);
+    padding: 32px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  .guarantee-box:hover {
+    border-color: #c9ae2a;
+    box-shadow: 0 0 32px rgba(171,147,24,0.15), inset 0 0 48px rgba(171,147,24,0.03);
+    transform: scale(1.02);
+  }
+  /* Corner accents */
+  .guarantee-box::before,
+  .guarantee-box::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: #c9ae2a;
+    border-style: solid;
+  }
+  .guarantee-box::before {
+    top: -1px; left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+  .guarantee-box::after {
+    bottom: -1px; right: -1px;
+    border-width: 0 2px 2px 0;
+  }
+  .guarantee-icon { font-size: 2.5rem; margin-bottom: 8px; }
+  .guarantee-title {
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9ae2a;
+    margin-bottom: 8px;
+  }
+  .guarantee-text {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: rgba(248,245,239,0.7);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .pricing-section .cta-btn.inverted { background: #0a0a0a; color: #ab9318; border-color: #0a0a0a; margin-top: 48px; }
+  .pricing-section .cta-btn.inverted:hover { background: #111; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+
+  /* ─── FAQ ─── */
+  .faq-section {
+    background: linear-gradient(180deg, #0a0a0a 0%, #0e0c06 50%, #0a0a0a 100%);
+  }
+  .faq-list { display: flex; flex-direction: column; gap: 2px; max-width: 720px; }
+  .faq-item { border-bottom: 1px solid rgba(171,147,24,0.15); }
+
+  .faq-item input[type="checkbox"] { display: none; }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 0;
+    font-family: 'Barlow', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f8f5ef;
+    cursor: pointer;
+    transition: color 0.2s;
+    width: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .faq-q:hover { color: #ab9318; }
+
+  .faq-icon-toggle {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    color: #ab9318;
+    transition: transform 0.3s;
+    display: inline-block;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 24px;
+  }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .faq-a p {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(248,245,239,0.7);
+    padding-bottom: 24px;
+  }
+
+  .faq-item input[type="checkbox"]:checked ~ .faq-a { max-height: 1000px; }
+  .faq-item input[type="checkbox"]:checked ~ .faq-q .faq-icon-toggle { transform: rotate(45deg); }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta-section {
+    background: #0a0a0a;
+    text-align: center;
+    padding: 64px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(171,147,24,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    color: #ab9318;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .final-sub {
+    font-size: 1rem;
+    color: rgba(248,245,239,0.7);
+    margin: 8px auto 32px;
+    max-width: 560px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── FOOTER ─── */
+  .site-footer {
+    background: #050505;
+    border-top: 1px solid rgba(171,147,24,0.15);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    color: #ab9318;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(248,245,239,0.4);
+    line-height: 1.6;
+  }
+
+  /* ─── STICKY NAV ─── */
+  .sticky-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: rgba(10,10,10,0.92);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(171,147,24,0.2);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+  .sticky-nav.visible { transform: translateY(0); }
+  .sticky-nav .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .sticky-nav .nav-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  .sticky-nav .nav-brand-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1rem;
+    color: #ab9318;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .sticky-nav .nav-cta {
+    background: #ab9318;
+    color: #0a0a0a;
+    font-family: 'Barlow Condensed', Arial, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 10px 22px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .sticky-nav .nav-cta:hover {
+    background: #c9ae2a;
+    transform: scale(1.04);
+  }
+  @media(max-width: 479px) {
+    .sticky-nav .nav-brand-text { display: none; }
+    .sticky-nav .nav-cta { font-size: 0.75rem; padding: 8px 16px; }
+  }
+
+  /* ─── MOBILE STICKY CTA BAR ─── */
+  .sticky-cta-bar { display: none; }
+  @media(max-width: 639px) {
+    .sticky-cta-bar {
+      display: block;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9997;
+      background: rgba(10,10,10,0.92);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-top: 2px solid #ab9318;
+      padding: 8px 12px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.6);
+    }
+    .sticky-cta-bar a {
+      display: block;
+      background: #ab9318;
+      color: #0a0a0a;
+      font-family: 'Barlow Condensed', Arial, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+      width: 100%;
+    }
+    body { padding-bottom: 64px; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width: 639px) {
+    section { padding: 64px 16px; }
+    .hero { padding: 48px 16px 32px; min-height: auto; }
+    .proof-bar { gap: 16px; padding: 16px; }
+    .proof-item { font-size: 0.72rem; gap: 6px; }
+    .proof-item svg { width: 14px; height: 14px; }
+    .pain-warning { flex-direction: column; gap: 12px; }
+    .pricing-card { padding: 24px; }
+    .pricing-card.featured { transform: none; }
+    .pricing-card.featured:hover { transform: none; }
+    .price-amount { font-size: 2.5rem; }
+    .cta-btn { padding: 18px 32px; font-size: 1rem; }
+    .cta-btn.dramatic { padding: 20px 40px; font-size: 1.1rem; }
+    .cta-block { padding: 32px 16px; }
+    .value-table th, .value-table td { padding: 12px 16px; font-size: 0.85rem; }
+    .guarantee-box { padding: 24px 16px; }
+    .banner-date { font-size: 1.1rem; }
+    .final-cta-section { padding: 48px 16px; }
+    .mentor-stats { gap: 24px; }
+    .stat-num { font-size: 2rem; }
+    .section-num { font-size: 5rem; margin-bottom: -32px; }
+    /* Remove noise on mobile for performance */
+    body::after { display: none; }
+  }
+  @media(max-width: 479px) {
+    .hero-headline { font-size: 1.7rem; }
+    .hero-sub { font-size: 0.88rem; }
+    .section-title { font-size: 1.4rem; }
+    .proof-bar { gap: 12px; }
+    .proof-item { font-size: 0.68rem; }
+    .section-num { font-size: 4rem; margin-bottom: -24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+  <a href="#" class="nav-brand">
+    <img src="img/logoImersaoP.jpeg" alt="Imersao P" class="nav-logo" width="32" height="32">
+    <span class="nav-brand-text">Imersao P</span>
+  </a>
+  <a href="#pricing" class="nav-cta">Garantir Vaga</a>
+</nav>
+
+<!-- 1. URGENCY BANNER -->
+<div class="urgency-banner">
+  VAGAS LIMITADAS <span class="banner-sep">|</span> MÉTODO EXCLUSIVO DE POSICIONAMENTO
+  <span class="banner-date">30 DE MARÇO &middot; 19H &middot; AO VIVO</span>
+</div>
+
+<!-- 2. HERO -->
+<header class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span> Evento ao vivo &middot; 3h de imersão
+  </div>
+  <h1 class="hero-headline">
+    <span class="word">Pare</span> <span class="word">de</span> <span class="word">perder</span> <span class="word">espaço</span> <span class="word">para</span> <span class="word">quem</span> <span class="word">sabe</span> <span class="word">menos</span> <span class="word">que</span> <span class="word">você,</span>
+    <em><span class="word">mas</span> <span class="word">se</span> <span class="word">posiciona</span> <span class="word">melhor.</span></em>
+  </h1>
+  <p class="hero-sub">
+    Na <strong>Imersão P</strong>, você vai construir ao vivo o seu <strong>Posicionamento Único de Valor (PUV)</strong> — a mensagem que transforma sua expertise em autoridade percebida e faz o mercado pagar o que você realmente vale.
+  </p>
+</header>
+
+<!-- CTA #1 -->
+<div class="cta-block">
+  <a href="#pricing" class="cta-btn">
+    Garantir Minha Vaga na Imersão
+  </a>
+  <p class="cta-note">Pagamento seguro via Hotmart &middot; Vagas limitadas</p>
+</div>
+
+<!-- 3. SOCIAL PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-item">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+    22+ Anos de Atuação
+  </div>
+  <div class="proof-item">
+    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+    6 Negócios Fundados
+  </div>
+  <div class="proof-item">
+    <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+    +500 Profissionais
+  </div>
+  <div class="proof-item">
+    <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+    3h Ao Vivo
+  </div>
+</div>
+
+<!-- 4. DOR (PAIN) + CTA #2 -->
+<section class="pain-section">
+  <div class="container">
+    <span class="section-num">01</span>
+    <p class="section-label anim-left">O Diagnóstico</p>
+    <h2 class="section-title anim-clip-reveal">O mercado não paga pelo quanto você sabe, mas pelo quanto ele <em class="highlight-word">percebe que você vale.</em></h2>
+
+    <div class="pain-lead anim-up-exit">
+      Você sente que é um "especialista invisível"? Aquele que tem resultados reais, mas assiste a concorrentes menos qualificados sendo convidados para eventos e fechando contratos maiores?
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
+        <div class="pain-icon">&#128184;</div>
+        <div class="pain-title">A Batalha do Preço</div>
+        <div class="pain-desc">Suas propostas são sempre respondidas com "dá para dar um desconto?". Você é comparado por preço, não por valor.</div>
+      </div>
+      <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
+        <div class="pain-icon">&#128230;</div>
+        <div class="pain-title">O Especialista Commodity</div>
+        <div class="pain-desc">Para o mercado, você é apenas "mais um". Se você sumir hoje, o cliente te substitui em 5 minutos por alguém mais barato no Google.</div>
+      </div>
+      <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
+        <div class="pain-icon">&#128274;</div>
+        <div class="pain-title">O Teto de Vidro</div>
+        <div class="pain-desc">Você trabalha 12h por dia, mas sua conta bancária estagnou. Sua experiência é vasta, mas seus ganhos não refletem sua bagagem profissional.</div>
+      </div>
+      <div class="pain-card anim-up">
+        <span class="border-line border-line--top"></span>
+        <span class="border-line border-line--right"></span>
+        <span class="border-line border-line--bottom"></span>
+        <span class="border-line border-line--left"></span>
+        <div class="pain-icon">&#128123;</div>
+        <div class="pain-title">A Invisibilidade Digital</div>
+        <div class="pain-desc">Você existe no mercado, mas não é visto. Sua autoridade e seu conhecimento ficam presos dentro de você — sem impacto, sem alcance, sem resultado.</div>
+      </div>
+    </div>
+
+    <div class="pain-warning anim-up">
+      <div class="warn-icon">&#9888;&#65039;</div>
+      <div class="warn-text">
+        <strong>Cuidado:</strong> A invisibilidade é o cemitério dos bons profissionais. Continuar ignorando seu posicionamento é o caminho mais rápido para o esgotamento financeiro.
+      </div>
+    </div>
+
+    <div class="cta-center">
+      <a href="#pricing" class="cta-btn pulse">
+        Quero Sair da Invisibilidade
+      </a>
+      <p class="cta-note" style="color:rgba(0,0,0,0.4);">Método testado por +500 profissionais</p>
+    </div>
+  </div>
+</section>
+
+<span class="gold-divider"></span>
+
+<!-- 5. PARA QUEM -->
+<section class="for-whom-section">
+  <div class="container">
+    <span class="section-num">02</span>
+    <p class="section-label anim-left">Para Quem é Isso</p>
+    <h2 class="section-title anim-up">Este encontro foi desenhado <em class="highlight-word highlight-gold">para você.</em></h2>
+
+    <div class="profiles-grid">
+      <div class="profile-card anim-up">
+        <div class="profile-icon">&#127919;</div>
+        <div class="profile-title">O Iniciante Estratégico</div>
+        <div class="profile-desc">Para você que está começando e já deseja iniciar no mercado com o posicionamento correto, evitando anos de invisibilidade.</div>
+      </div>
+      <div class="profile-card anim-up">
+        <div class="profile-icon">&#127942;</div>
+        <div class="profile-title">O Especialista Experiente</div>
+        <div class="profile-desc">Para você que já tem muita bagagem, mas nunca criou um posicionamento intencional ou deseja validar sua mensagem para escalar seu valor.</div>
+      </div>
+      <div class="profile-card anim-up">
+        <div class="profile-icon">&#127970;</div>
+        <div class="profile-title">O Dono de Negócio</div>
+        <div class="profile-desc">Seja para clínicas, escritórios ou negócios digitais que buscam clientes qualificados — ou para transicionar sua autoridade para o online.</div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:24px;font-size:0.85rem;color:rgba(248,245,239,0.4);letter-spacing:1px;">
+      Médicos &middot; Advogados &middot; Psicólogos &middot; Arquitetos &middot; Designers &middot; Empresários &middot; Empreendedores
+    </p>
+  </div>
+</section>
+
+<!-- 6. DEPOIMENTOS -->
+<section class="testimonials-section">
+  <div class="container">
+    <span class="section-num">03</span>
+    <p class="section-label anim-left">Depoimentos</p>
+    <h2 class="section-title anim-up">Quem participou <em class="highlight-word">transformou</em> sua presença no mercado.</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card anim-scale">
+        <div class="result-badge">Conteúdo de mentoria de altíssimo valor</div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="quote-mark">&ldquo;</div>
+        <p class="testimonial-text">Uma imersão maravilhosa. O conteúdo aplicado é de mentoria e de altíssimo valor. Valeu muito a pena participar!</p>
+        <div class="testimonial-author">Ivani Restrepo</div>
+        <div class="testimonial-role">Empresária e Mentora</div>
+      </div>
+      <div class="testimonial-card anim-scale">
+        <div class="result-badge">Técnica + prática = resultados reais</div>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="quote-mark">&ldquo;</div>
+        <p class="testimonial-text">Uma imersão que vai além da teoria, a união da técnica com a aplicação prática que me ajudou a colher excelentes resultados.</p>
+        <div class="testimonial-author">Jaqueline Preis</div>
+        <div class="testimonial-role">Empresária</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<span class="gold-divider"></span>
+
+<!-- 7. SOLUÇÃO (4 Pilares) + CTA #3 -->
+<section class="solution-section">
+  <div class="container">
+    <span class="section-num">04</span>
+    <p class="section-label anim-left">A Solução</p>
+    <h2 class="section-title anim-clip-reveal">Chegou a hora de cobrar o que sua experiência realmente vale.</h2>
+    <p class="solution-intro anim-up-exit">
+      A Imersão P não é um curso gravado que você vai abandonar. É um <strong>workshop de construção ao vivo de 3 horas</strong> com Gisele Machado. Diferente de uma aula passiva, ela vai te guiar através da Ferramenta de Criação do PUV (Posicionamento Único de Valor). Gisele só avança para o próximo pilar quando você terminar o anterior.
+    </p>
+
+    <div class="pillars-grid">
+      <div class="pillar-card anim-up" data-num="1">
+        <div class="pillar-tag">Pilar 1</div>
+        <div class="pillar-title">O Cliente Específico</div>
+        <div class="pillar-desc">Identifique o momento exato onde sua expertise é rara e necessária.</div>
+      </div>
+      <div class="pillar-card anim-up" data-num="2">
+        <div class="pillar-tag">Pilar 2</div>
+        <div class="pillar-title">A Grande Dor</div>
+        <div class="pillar-desc">Mapeie a consequência financeira e a emoção dominante do seu público.</div>
+      </div>
+      <div class="pillar-card anim-up" data-num="3">
+        <div class="pillar-tag">Pilar 3</div>
+        <div class="pillar-title">Seu Método Único</div>
+        <div class="pillar-desc">Crie um nome magnético e uma palavra-chave de ação para sua forma de trabalhar.</div>
+      </div>
+      <div class="pillar-card anim-up" data-num="4">
+        <div class="pillar-tag">Pilar 4</div>
+        <div class="pillar-title">O Resultado Transformador</div>
+        <div class="pillar-desc">Estabeleça a métrica de ganho real que torna você um ímã de clientes.</div>
+      </div>
+    </div>
+
+    <div class="cta-center">
+      <a href="#pricing" class="cta-btn inverted">
+        Construir Meu PUV Agora
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. MENTORA -->
+<section class="mentor-section">
+  <div class="container">
+    <span class="section-num">05</span>
+    <p class="section-label anim-left">A Mentora</p>
+    <h2 class="section-title anim-up">Gisele Machado</h2>
+
+    <div class="mentor-inner">
+      <div class="anim-scale">
+        <div class="mentor-photo">
+          <img src="img/ftGm.jpeg" alt="Gisele Machado — Mentora, Jornalista e Especialista em Posicionamento" loading="lazy" width="400" height="532">
+          <div class="mentor-photo-label">GISELE<br>MACHADO</div>
+        </div>
+      </div>
+      <div class="anim-up">
+        <div class="mentor-stats">
+          <div class="mentor-stat">
+            <div class="stat-num">22+</div>
+            <div class="stat-label">Anos de atuação</div>
+          </div>
+          <div class="mentor-stat">
+            <div class="stat-num">6</div>
+            <div class="stat-label">Negócios fundados</div>
+          </div>
+          <div class="mentor-stat">
+            <div class="stat-num">500+</div>
+            <div class="stat-label">Profissionais impactados</div>
+          </div>
+        </div>
+        <p class="mentor-bio">
+          Jornalista, empresária, consultora, palestrante, colunista e mentora. Com mais de 22 anos de atuação no mercado e 6 negócios fundados, Gisele Machado é especialista em posicionamento de marca pessoal e criadora do método PUV (Posicionamento Único de Valor). Lidera a <strong>Halo Notoriedade</strong> e o programa <strong>Você Mais Notável</strong>, ajudando profissionais a saírem da invisibilidade e se tornarem referência — transformando expertise em autoridade percebida e lucrativa.
+        </p>
+        <div class="mentor-tags">
+          <span class="tag">Jornalista</span>
+          <span class="tag">Palestrante</span>
+          <span class="tag">Mentora</span>
+          <span class="tag">Colunista</span>
+          <span class="tag">Halo Notoriedade</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. PRICING MEGA-SECTION -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <span class="section-num">06</span>
+    <p class="section-label anim-left">Investimento</p>
+    <h2 class="section-title anim-clip-reveal">Quanto custaria montar tudo isso por conta própria?</h2>
+
+    <table class="value-table anim-up">
+      <thead>
+        <tr>
+          <th>Solução</th>
+          <th style="text-align:right;">Valor Médio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Consultoria individual de posicionamento</td>
+          <td>R$2.000+</td>
+        </tr>
+        <tr>
+          <td>Curso online de marca pessoal</td>
+          <td>R$1.500+</td>
+        </tr>
+        <tr>
+          <td>Mentoria em grupo (3 meses)</td>
+          <td>R$3.000+</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Imersão P — ao vivo com Gisele Machado</td>
+          <td>a partir de R$97</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="text-align:center;margin-bottom:48px;font-size:0.92rem;opacity:0.7;">Escolha seu ingresso e comece sua transformação.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card anim-up">
+        <div class="price-label">Ingresso</div>
+        <div class="price-type">Normal</div>
+        <div class="price-old">De R$297</div>
+        <div class="price-amount">R$97</div>
+        <div class="price-period">pagamento único</div>
+        <div class="savings-badge">Economia de 67%</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Transmissão Ao Vivo (Zoom)</li>
+          <li>Ferramenta do PUV em PDF</li>
+          <li>Participação no Q&amp;A Geral</li>
+          <li>Replay por 3 dias</li>
+        </ul>
+        <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="price-cta">Quero Este Ingresso</a>
+        <span class="price-urgency">Poucas vagas restantes nesta categoria</span>
+      </div>
+
+      <div class="pricing-card featured anim-up">
+        <div class="price-label">Ingresso</div>
+        <div class="price-type">VIP</div>
+        <div class="price-old">De R$497</div>
+        <div class="price-amount">R$147</div>
+        <div class="price-period">pagamento único</div>
+        <div class="savings-badge">Economia de 70%</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li>Tudo do Ingresso Normal +</li>
+          <li>Sessão de Mentoria VIP (Hotseat)</li>
+          <li>Olhar Estratégico Direcionado</li>
+          <li>Replay Estendido por 7 dias</li>
+        </ul>
+        <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="price-cta">Quero o VIP</a>
+        <span class="price-urgency">Vagas VIP extremamente limitadas</span>
+      </div>
+    </div>
+
+    <div class="hotseat-box anim-up">
+      <div class="hotseat-title">&#10022; O que é o Hotseat VIP?</div>
+      <div class="hotseat-desc">É um momento exclusivo após a imersão onde a Gisele guia profissionais que optaram pelo VIP à "cadeira quente". Ela analisa o seu negócio especificamente, respondendo suas dúvidas e ajustando seu posicionamento ao vivo — como uma consultoria individual em grupo.</div>
+    </div>
+
+    <div class="guarantee-box anim-scale">
+      <div class="guarantee-icon">&#128737;</div>
+      <div class="guarantee-title">Garantia Hotmart de 7 Dias</div>
+      <p class="guarantee-text">
+        Se por qualquer motivo você sentir que a Imersão P não é para você, basta solicitar o reembolso em até 7 dias. Sem burocracia, sem perguntas. O risco é zero.
+      </p>
+    </div>
+
+    <div class="cta-center">
+      <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="cta-btn inverted">
+        Escolher Meu Ingresso Agora
+      </a>
+      <p class="cta-note" style="color:rgba(0,0,0,0.4);">Pagamento 100% seguro via Hotmart &middot; Garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10. FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <span class="section-num">07</span>
+    <p class="section-label anim-left">Dúvidas Frequentes</p>
+    <h2 class="section-title anim-up">Suas perguntas, respondidas.</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <input type="checkbox" id="faq1">
+        <label class="faq-q" for="faq1">Serve para o meu nicho?<span class="faq-icon-toggle">+</span></label>
+        <div class="faq-a"><p>Sim. Se você vende serviço ou conhecimento — em clínica, escritório ou infoproduto — o posicionamento é sua base de lucro. O método foi desenhado para profissionais de qualquer nicho que desejam se destacar no mercado.</p></div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq2">
+        <label class="faq-q" for="faq2">Vai ficar gravado?<span class="faq-icon-toggle">+</span></label>
+        <div class="faq-a"><p>Sim, o replay estará na Hotmart pelo período do seu ingresso (3 dias no Normal, 7 dias no VIP) para você revisar a construção da ferramenta no seu próprio ritmo.</p></div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq3">
+        <label class="faq-q" for="faq3">Preciso ter produto digital?<span class="faq-icon-toggle">+</span></label>
+        <div class="faq-a"><p>Não. A imersão foca na sua notoriedade profissional, seja para o mundo físico ou para escalar para o digital. Você aplica o método independentemente do formato do seu negócio.</p></div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq4">
+        <label class="faq-q" for="faq4">Qual a diferença entre Normal e VIP?<span class="faq-icon-toggle">+</span></label>
+        <div class="faq-a"><p>O VIP inclui o Hotseat — uma sessão exclusiva onde a Gisele analisa especificamente o seu negócio ao vivo, como uma consultoria individual em grupo, além de replay estendido por 7 dias.</p></div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq5">
+        <label class="faq-q" for="faq5">E se eu não puder assistir ao vivo?<span class="faq-icon-toggle">+</span></label>
+        <div class="faq-a"><p>Você terá acesso ao replay pelo período do seu ingresso (3 ou 7 dias). Porém, recomendamos fortemente a participação ao vivo — a construção do PUV é guiada passo a passo e a interação em tempo real potencializa seus resultados.</p></div>
+      </div>
+      <div class="faq-item">
+        <input type="checkbox" id="faq6">
+        <label class="faq-q" for="faq6">Tem garantia?<span class="faq-icon-toggle">+</span></label>
+        <div class="faq-a"><p>Sim! A compra é protegida pela Garantia Hotmart de 7 dias. Se por qualquer motivo você não ficar satisfeito, basta solicitar o reembolso dentro do prazo. Sem burocracia, sem perguntas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. CTA FINAL #5 -->
+<section class="final-cta-section">
+  <div style="position:relative;z-index:1;">
+    <p class="final-tagline anim-up-exit">"Foque no seu CPF para faturar no seu CNPJ."</p>
+    <h2 class="section-title" style="text-align:center;">22 anos de experiência condensados<br><em style="color:#ab9318;font-style:italic;">em um método prático de 3 horas.</em></h2>
+    <p class="final-sub">Construa seu Posicionamento Único de Valor ao vivo com Gisele Machado. Método testado. Resultados reais. Vagas limitadas.</p>
+    <div>
+      <a href="https://pay.hotmart.com/I103193730V?checkoutMode=10" class="cta-btn dramatic">
+        Quero Meu Lugar de Destaque
+      </a>
+      <p class="cta-note">Pagamento seguro &middot; Garantia de 7 dias &middot; Acesso imediato via Hotmart</p>
+    </div>
+  </div>
+</section>
+
+<!-- 12. FOOTER -->
+<footer class="site-footer">
+  <div class="footer-brand">Gisele Machado</div>
+  <p class="footer-copy">
+    &copy; 2026 Gisele Machado. Todos os direitos reservados.<br>
+    Este site não é afiliado ao Facebook ou Google.
+  </p>
+</footer>
+
+<!-- MOBILE STICKY CTA BAR -->
+<div class="sticky-cta-bar">
+  <a href="#pricing">Garantir Minha Vaga</a>
+</div>
+
+<script>
+(function() {
+  var nav = document.getElementById('stickyNav');
+  var lastY = 0;
+  var threshold = 300;
+  window.addEventListener('scroll', function() {
+    var y = window.scrollY;
+    if (y > threshold && y < lastY) {
+      nav.classList.add('visible');
+    } else {
+      nav.classList.remove('visible');
+    }
+    lastY = y;
+  });
+})();
+</script>
+</body>
+</html>
