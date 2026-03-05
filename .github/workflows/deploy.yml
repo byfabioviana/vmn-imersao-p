@@ -4,14 +4,18 @@
 #
 # Fluxo:
 #   1. Build da imagem Docker (nginx + HTML estático)
-#   2. Push para registry privado (registry.fabioviana.app.br)
-#   3. Trigger webhook do Portainer → pull nova imagem
+#   2. Push para registry privado
+#   3. Atualiza stack no Portainer via API (docker-compose.yml)
+#   4. Redeploy do serviço com nova imagem + labels atualizadas
 #
 # Secrets necessários no GitHub (Settings → Secrets → Actions):
-#   REGISTRY_USERNAME          — usuário do registry (ex: byfabioviana)
+#   REGISTRY_USERNAME          — usuário do registry
 #   REGISTRY_PASSWORD          — senha do registry privado
 #   REGISTRY_URL               — ex: registry.fabioviana.app.br
-#   PORTAINER_WEBHOOK_LP       — webhook URL do serviço lp-imersao-p no Portainer
+#   PORTAINER_URL              — ex: https://portainer.fabioviana.app.br
+#   PORTAINER_API_KEY          — API key gerada no Portainer
+#   PORTAINER_STACK_ID         — ID numérico do stack no Portainer
+#   PORTAINER_ENDPOINT_ID      — ID numérico do endpoint (environment)
 # ============================================================
 
 name: Deploy LP Imersão P
@@ -70,15 +74,31 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Trigger Portainer redeploy
+      - name: Update Portainer stack
         run: |
-          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
-            -X POST "${{ secrets.PORTAINER_WEBHOOK_LP }}")
-          echo "Portainer webhook status: $HTTP_STATUS"
+          # Read docker-compose.yml content
+          COMPOSE_CONTENT=$(cat docker-compose.yml)
+
+          # Update stack via Portainer API
+          HTTP_STATUS=$(curl -s -o /tmp/portainer-response.json -w "%{http_code}" \
+            -X PUT "${{ secrets.PORTAINER_URL }}/api/stacks/${{ secrets.PORTAINER_STACK_ID }}?endpointId=${{ secrets.PORTAINER_ENDPOINT_ID }}" \
+            -H "X-API-Key: ${{ secrets.PORTAINER_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg content "$COMPOSE_CONTENT" '{
+              stackFileContent: $content,
+              pullImage: true,
+              prune: true
+            }')")
+
+          echo "Portainer API status: $HTTP_STATUS"
+
           if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
-            echo "::error::Portainer webhook falhou com status $HTTP_STATUS"
+            echo "::error::Portainer stack update falhou com status $HTTP_STATUS"
+            cat /tmp/portainer-response.json
             exit 1
           fi
+
+          echo "Stack atualizado com sucesso"
 
       - name: Deploy summary
         run: |
@@ -88,4 +108,5 @@ jobs:
           echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| Imagem | \`${{ env.IMAGE }}:latest\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Commit | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
-          echo "| URL | https://imersaop.com.br |" >> $GITHUB_STEP_SUMMARY
+          echo "| Domínio | https://imersaop.com.br |" >> $GITHUB_STEP_SUMMARY
+          echo "| Stack | Atualizado via Portainer API |" >> $GITHUB_STEP_SUMMARY
